@@ -26,11 +26,12 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Backbone SPA Workshop - Restaurant Reservation System</title>
+    <title>AngularJS SPA Workshop - Restaurant Reservation System</title>
 
     <link rel="stylesheet" href="css/base.css"/>
 
     <!--General Library includes -->
+
     <script type="text/javascript" src="libs/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="libs/json2.js"></script>
     <script type="text/javascript" src="libs/underscore.js"></script>
@@ -65,14 +66,14 @@
 
         <div id="restaurant-list-main" class="large-8 medium-8 columns">
             <div class='restaurantList'>
-                <div class="row" ng-repeat="restaurant in restaurants |filter:query:strict">
+                <div class="row" ng-repeat="restaurant in restaurants |filter:query:strict |orderBy:orderProp">
                     <div class="large-12 columns">
                         <div class="callout panel">
-                            <p><strong>{{restaurant.name}}</strong></p>
+                            <p><strong>{{restaurant.name}}</strong><br/><span ng-if="restaurant.tagline">{{restaurant.tagline}}</span></p>
 
                             <div class="row">
                                 <div class="large-3 medium-6 small-12 columns">
-                                    <p>Price: {{restaurant.cost}}</p>
+                                    <p>Price: {{restaurant.price}}</p>
                                 </div>
                                 <div class="large-3 medium-6 small-12 columns">
                                     <p>Rating: {{restaurant.rating}}</p>
@@ -105,7 +106,12 @@
 
         <div class="large-4 medium-4 columns">
             <div class="panel">
-                Search Name: <input ng-model="query.name">
+                <label>Search Name:</label> <input ng-model="query.name">
+                <label>Sort By:</label> <select class="dropdown" ng-model="orderProp">
+                    <option value="name">Alphabetical</option>
+                    <option value="price">Price</option>
+                    <option value="-rating">Rating</option>
+                </select>
             </div>
             <div class="panel">
                 <h5>Other/Login?:</h5>
