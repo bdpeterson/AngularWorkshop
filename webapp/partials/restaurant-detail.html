@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="large-12 columns">
+        <div class="callout panel">
+            <p><strong>{{restaurant.name}}</strong><br/><span
+                    ng-if="restaurant.tagline">{{restaurant.tagline}}</span>
+            </p>
+
+            <div class="row">
+                <div class="large-3 medium-6 small-12 columns">
+                    <p>Price: {{restaurant.price}}</p>
+                </div>
+                <div class="large-3 medium-6 small-12 columns">
+                    <p>Rating: {{restaurant.rating}}</p>
+                </div>
+                <div class="large-6 medium-12 small-12 columns">
+                    <p>Address: {{restaurant.address}}</p>
+                </div>
+            </div>
+            <p>Description: {{restaurant.description}} </p>
+
+            <form>
+                <fieldset>
+                    <legend>Available Times</legend>
+
+                    <div class="row">
+                        <div ng-repeat="time in available">
+                            <div class="large-3 medium-4 small-6 columns availableTime" value="{{time}}" ng-click="selectTime(time)">
+                                {{time | dateFormatter}}
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div ng-if="selectedTime" ng-include src="'partials/restaurant-reservation-form.html'"></div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div id="restaurant-list-main">
+    <div class='restaurantList'>
+        <div class="row" ng-repeat="restaurant in restaurants |filter:query:strict |orderBy:orderProp">
+            <div class="large-12 columns">
+                <div class="callout panel">
+                    <p><strong>{{restaurant.name}}</strong><br/><span
+                            ng-if="restaurant.tagline">{{restaurant.tagline}}</span>
+                    </p>
+
+                    <div class="row">
+                        <div class="large-3 medium-6 small-12 columns">
+                            <p>Price: {{restaurant.price}}</p>
+                        </div>
+                        <div class="large-3 medium-6 small-12 columns">
+                            <p>Rating: {{restaurant.rating}}</p>
+                        </div>
+                        <div class="large-6 medium-12 small-12 columns">
+                            <p>Address: {{restaurant.address}}</p>
+                        </div>
+                    </div>
+                    <p>Description: {{restaurant.description}} </p>
+
+                    <a href="#/restaurant/{{restaurant.id}}" name="restaurant-{{restaurant.id}}" class="button restaurantRow"
+                       style="color: white;">Show Times</a>
+                    <!--Former Handlebars content.-->
+                    <!--
+                    <div class="availableTimes">
+                        <a href="#restaurant/{{id}}" name="restaurant-{{id}}" class="button restaurantRow"
+                           style="color: white;">Show Times</a>
+                    </div>
+                    <div class="reservationForm"/>
+                    -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
