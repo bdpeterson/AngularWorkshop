@@ -22,18 +22,40 @@ restaurantReservationControllers.controller('RestaurantListController', ['$scope
 
     }]);
 
-restaurantReservationControllers.controller('RestaurantDetailController', ['$scope', '$http', '$routeParams',
+restaurantReservationControllers.controller('ReservationDetailController', ['$scope', '$http', '$routeParams',
     function ($scope, $http, $routeParams) {
+        $http.get('/reservations/'+$routeParams.id).success(function(data){
+            $scope.reservation = data;
+            $http.get('/restaurants/'+data.restaurantId).success(function (data){
+                $scope.restaurant = data;
+            });
+        })
+    }]);
+
+
+restaurantReservationControllers.controller('RestaurantDetailController', ['$scope', '$http', '$routeParams', '$location',
+    function ($scope, $http, $routeParams, $location) {
         $http.get('/restaurants/' + $routeParams.id).success(function (data) {
             $scope.restaurant = data;
         });
-        $http.get('/restaurants/'+$routeParams.id+'/reservations').success(function(data){
+        $http.get('/restaurants/' + $routeParams.id + '/reservations').success(function (data) {
             $scope.available = data.available;
         });
 
-        $scope.selectTime= function(selectedTime){
+        $scope.selectTime = function (selectedTime) {
             $scope.selectedTime = selectedTime;
         };
+
+        $scope.makeReservation = function () {
+            $scope.reservation.restaurantId = $scope.restaurant.id;
+            $scope.reservation.time = $scope.selectedTime;
+
+            $http.post('/reservations', $scope.reservation).success(function (data) {
+                console.log([data.id]);
+                $location.path("/reservation/" + data.id);
+            })
+        };
+
 
     }]);
 
