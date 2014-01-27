@@ -35,6 +35,8 @@ restaurantReservationControllers.controller('ReservationDetailController', ['$sc
 
 restaurantReservationControllers.controller('RestaurantDetailController', ['$scope', '$http', '$routeParams', '$location',
     function ($scope, $http, $routeParams, $location) {
+        $scope.reservation;
+
         $http.get('/restaurants/' + $routeParams.id).success(function (data) {
             $scope.restaurant = data;
         });
@@ -47,8 +49,10 @@ restaurantReservationControllers.controller('RestaurantDetailController', ['$sco
         };
 
         $scope.makeReservation = function () {
-            $scope.reservation.restaurantId = $scope.restaurant.id;
-            $scope.reservation.time = $scope.selectedTime;
+            if ($scope.reservation){
+                $scope.reservation.restaurantId = $scope.restaurant.id;
+                $scope.reservation.time = $scope.selectedTime;
+            }
 
             $http.post('/reservations', $scope.reservation).success(function (data) {
                 console.log([data.id]);
