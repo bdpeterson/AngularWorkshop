@@ -10,56 +10,48 @@ var restaurantReservationControllers = new angular.module('restaurantReservation
 
 // RestaurantListController is the ng-controller value in index.html. It identifies the DOM element that this controller 'controls'
 // This can be done a couple different ways. However, this way supports minification and tends to be the preferred method.
-restaurantReservationControllers.controller('RestaurantListController', ['$scope', '$http',
-    function ($scope, $http) {
-
-        // Use the Angular http service to retrieve the Restaurants.
-        $http.get('/restaurants').success(function (data) {
-            $scope.restaurants = data;
-        });
+restaurantReservationControllers.controller('RestaurantListController', ['$scope', 'Restaurant',
+    function ($scope, Restaurant) {
+        $scope.restaurants = Restaurant.GetAllRestaurants();
 
         $scope.orderProp = 'name'; // Defaults the order property to the Name value.
 
     }]);
 
-restaurantReservationControllers.controller('ReservationDetailController', ['$scope', '$http', '$routeParams',
-    function ($scope, $http, $routeParams) {
-        $http.get('/reservations/'+$routeParams.id).success(function(data){
-            $scope.reservation = data;
-            $http.get('/restaurants/'+data.restaurantId).success(function (data){
-                $scope.restaurant = data;
-            });
-        })
+restaurantReservationControllers.controller('ReservationDetailController', ['$scope', '$routeParams', 'Reservation', 'Restaurant',
+    function ($scope,$routeParams, Reservation, Restaurant) {
+        $scope.reservation = Reservation.get({reservationId: $routeParams.id}, function (reservation) {
+            $scope.restaurant = Restaurant.GetRestaurant({restaurantId: reservation.restaurantId});
+        });
     }]);
 
 
-restaurantReservationControllers.controller('RestaurantDetailController', ['$scope', '$http', '$routeParams', '$location',
-    function ($scope, $http, $routeParams, $location) {
+restaurantReservationControllers.controller('RestaurantDetailController', ['$scope', '$routeParams', '$location', 'Restaurant', 'Reservation',
+    function ($scope, $routeParams, $location, Restaurant, Reservation) {
         $scope.reservation;
+        $scope.restaurant = Restaurant.GetRestaurant({restaurantId: $routeParams.id});
 
-        $http.get('/restaurants/' + $routeParams.id).success(function (data) {
-            $scope.restaurant = data;
-        });
-        $http.get('/restaurants/' + $routeParams.id + '/reservations').success(function (data) {
-            $scope.available = data.available;
-        });
+        Restaurant.GetReservations({restaurantId: $routeParams.id},
+            function (data) {
+                $scope.available = data.available;
+            });
 
         $scope.selectTime = function (selectedTime) {
             $scope.selectedTime = selectedTime;
         };
 
         $scope.makeReservation = function () {
-            if ($scope.reservation){
+            if ($scope.reservation) {
                 $scope.reservation.restaurantId = $scope.restaurant.id;
                 $scope.reservation.time = $scope.selectedTime;
             }
+            var newReservation = new Reservation($scope.reservation);
 
-            $http.post('/reservations', $scope.reservation).success(function (data) {
-                console.log([data.id]);
-                $location.path("/reservation/" + data.id);
-            })
+            // Use built-in save function (using a POST)
+            newReservation.save(function (reservation) {
+                $location.path("/reservation/" + reservation.id);
+            });
         };
-
 
     }]);
 

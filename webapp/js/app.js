@@ -1,7 +1,8 @@
 var restaurantReservationApp = angular.module('restaurantReservationApp', [
     'ngRoute',
     'restaurantReservationControllers',
-    'formatters'
+    'formatters',
+    'restaurantServices'
 ]);
 
 restaurantReservationApp.config(['$routeProvider',
@@ -15,7 +16,7 @@ restaurantReservationApp.config(['$routeProvider',
                 templateUrl:'partials/restaurant-detail.html',
                 controller:'RestaurantDetailController'
             })
-            .when('/reservation/:id',{
+                .when('/reservation/:id',{
                 templateUrl:'partials/reservation-detail.html',
                 controller:'ReservationDetailController'
             })
