@@ -19,7 +19,7 @@ restaurantReservationControllers.controller('RestaurantListController', ['$scope
     }]);
 
 restaurantReservationControllers.controller('ReservationDetailController', ['$scope', '$routeParams', 'Reservation', 'Restaurant',
-    function ($scope,$routeParams, Reservation, Restaurant) {
+    function ($scope, $routeParams, Reservation, Restaurant) {
         $scope.reservation = Reservation.get({reservationId: $routeParams.id}, function (reservation) {
             $scope.restaurant = Restaurant.GetRestaurant({restaurantId: reservation.restaurantId});
         });
@@ -41,17 +41,20 @@ restaurantReservationControllers.controller('RestaurantDetailController', ['$sco
         };
 
         $scope.makeReservation = function () {
-            if ($scope.reservation) {
-                $scope.reservation.restaurantId = $scope.restaurant.id;
-                $scope.reservation.time = $scope.selectedTime;
-            }
-            var newReservation = new Reservation($scope.reservation);
+            if ($scope.reservationForm.$valid) {
+                if ($scope.reservation) {
+                    $scope.reservation.restaurantId = $scope.restaurant.id;
+                    $scope.reservation.time = $scope.selectedTime;
+                }
+                var newReservation = new Reservation($scope.reservation);
 
-            // Use built-in save function (using a POST)
-            newReservation.save(function (reservation) {
-                $location.path("/reservation/" + reservation.id);
-            });
+                // Use built-in save function (using a POST)
+                newReservation.save(function (reservation) {
+                    $location.path("/reservation/" + reservation.id);
+                });
+            }
         };
 
-    }]);
+    }])
+;
 

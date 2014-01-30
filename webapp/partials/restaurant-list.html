@@ -9,10 +9,10 @@
 
                     <div class="row">
                         <div class="large-3 medium-6 small-12 columns">
-                            <p>Price: {{restaurant.price}}</p>
+                            <p>Price: {{restaurant.price|priceFormatter}}</p>
                         </div>
                         <div class="large-3 medium-6 small-12 columns">
-                            <p>Rating: {{restaurant.rating}}</p>
+                            <p>Rating: {{restaurant.rating|ratingFormatter}}</p>
                         </div>
                         <div class="large-6 medium-12 small-12 columns">
                             <p>Address: {{restaurant.address}}</p>
