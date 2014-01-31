@@ -38,12 +38,12 @@ describe("Formatters", function () {
     describe("Price Format", function () {
             it("should show (n) dollar signs representing the count value.",
                 inject(function (priceFormatterFilter) {
-                    expect(priceFormatterFilter(-10), "");
-                    expect(priceFormatterFilter(0), "");
-                    expect(priceFormatterFilter(1), "$");
-                    expect(priceFormatterFilter(2), "$$");
-                    expect(priceFormatterFilter(3), "$$$");
-                    expect(priceFormatterFilter(4), "$$$$");
+                    expect(priceFormatterFilter(-10)).toBe("");
+                    expect(priceFormatterFilter(0)).toBe("");
+                    expect(priceFormatterFilter(1)).toBe("$");
+                    expect(priceFormatterFilter(2)).toBe("$$");
+                    expect(priceFormatterFilter(3)).toBe("$$$");
+                    expect(priceFormatterFilter(4)).toBe("$$$$");
 
                 }));
         }

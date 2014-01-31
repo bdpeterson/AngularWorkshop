@@ -33,7 +33,7 @@ module.exports = function (config) {
 
         // test results reporter to use
         // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-        reporters: ['progress'],
+        reporters: ['progress','coverage'],
 
 
         // web server port
@@ -68,8 +68,14 @@ module.exports = function (config) {
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-script-launcher',
-            'karma-jasmine'
+            'karma-jasmine',
+            'karma-coverage'
         ],
+
+        preprocessors: {
+            'js/**/*.js':['coverage']
+
+        },
 
         // If browser does not capture in given timeout [ms], kill it
         captureTimeout: 60000,

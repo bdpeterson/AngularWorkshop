@@ -18,12 +18,6 @@ restaurantReservationControllers.controller('RestaurantListController', ['$scope
 
     }]);
 
-restaurantReservationControllers.controller('ReservationDetailController', ['$scope', '$routeParams', 'Reservation', 'Restaurant',
-    function ($scope, $routeParams, Reservation, Restaurant) {
-        $scope.reservation = Reservation.get({reservationId: $routeParams.id}, function (reservation) {
-            $scope.restaurant = Restaurant.GetRestaurant({restaurantId: reservation.restaurantId});
-        });
-    }]);
 
 
 restaurantReservationControllers.controller('RestaurantDetailController', ['$scope', '$routeParams', '$location', 'Restaurant', 'Reservation',
@@ -39,7 +33,9 @@ restaurantReservationControllers.controller('RestaurantDetailController', ['$sco
         $scope.selectTime = function (selectedTime) {
             $scope.selectedTime = selectedTime;
         };
-
+    }]);
+restaurantReservationControllers.controller('ReservationFormController',['$scope','$location','Restaurant','Reservation',
+    function ($scope, $location, Restaurant, Reservation) {
         $scope.makeReservation = function () {
             if ($scope.reservationForm.$valid) {
                 if ($scope.reservation) {
@@ -48,8 +44,8 @@ restaurantReservationControllers.controller('RestaurantDetailController', ['$sco
                 }
                 var newReservation = new Reservation($scope.reservation);
 
-                // Use built-in save function (using a POST)
-                newReservation.save(function (reservation) {
+                // Use built-in save function (using a POST) (Non-GET are prefixed with a '$')
+                newReservation.$save(function (reservation) {
                     $location.path("/reservation/" + reservation.id);
                 });
             }
@@ -58,3 +54,9 @@ restaurantReservationControllers.controller('RestaurantDetailController', ['$sco
     }])
 ;
 
+restaurantReservationControllers.controller('ReservationDetailController', ['$scope', '$routeParams', 'Reservation', 'Restaurant',
+    function ($scope, $routeParams, Reservation, Restaurant) {
+        $scope.reservation = Reservation.get({reservationId: $routeParams.id}, function (reservation) {
+            $scope.restaurant = Restaurant.GetRestaurant({restaurantId: reservation.restaurantId});
+        });
+    }]);
