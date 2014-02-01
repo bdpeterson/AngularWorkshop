@@ -17,17 +17,12 @@ module.exports = function (config) {
             'libs/angular.js',
             'libs/angular-*.js',
             'js/**/*.js',
-            '../unit/*.js'
+            'unit/*.js'
         ],
 
 
         // list of files to exclude
         exclude: [
-            'js/handlebars-helpers.js',
-            'js/precompiled-templates.js',
-            'js/reservations.js',
-            'js/restaurant.js',
-            'js/todoCtrl.js'
         ],
 
 

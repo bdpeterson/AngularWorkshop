@@ -8,8 +8,8 @@ if not exist server/restaurants.db (
     call reset.bat
 )
 
-rem precompile handlebars templates
-call node node_modules/handlebars/bin/handlebars webapp/template -f webapp/js/precompiled-templates.js
+rem precompile handlebars templates (not used for AngularJS
+rem call node node_modules/handlebars/bin/handlebars webapp/template -f webapp/js/precompiled-templates.js
 
 rem startup the node server
 call node server/server --port 9000

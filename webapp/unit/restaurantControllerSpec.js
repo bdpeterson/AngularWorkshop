@@ -22,11 +22,25 @@ describe('Restaurant controllers', function() {
     };
 
     beforeEach(function(){
-        this.addMatchers({
-            toEqualData: function(expected) {
-                return angular.equals(this.actual, expected);
-            }
-        });
+        if (jasmine.version_ && jasmine.version_.major===1){
+            this.addMatchers({
+                toEqualData: function(expected){
+                    return angular.equals(this.actual,expected);
+                }
+            })
+        }else {
+            jasmine.addMatchers({
+                toEqualData: function(util, customEqualityTesters) {
+                    return {
+                        compare:function(actual,expected){
+                            var result = {};
+                            result.pass =  angular.equals(actual, expected);
+                            return result;
+                        }
+                    }
+                }
+            });
+        }
     });
 
     beforeEach(module('restaurantReservationApp'));
