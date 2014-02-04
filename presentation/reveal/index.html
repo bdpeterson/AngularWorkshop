@@ -37,9 +37,12 @@
 
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
-<section data-background="img/logo-small.jpg" data-background-size="400px"></section>
+<section><h2>JS HTML5 Web App Workshop</h2>
+<p>With Backbone, Handlebars and Zurb Foundation</p></section>
+<!--<section data-background="img/logo-small.jpg" data-background-size="400px"></section>-->
 <!--Intro-->
-<section><h2>Why are we here?</h2>
+<section><h2>Nvisia Welcome slide...details from Mark</h2></section>
+<section><h2>Workshop Objectives</h2>
     <ul>
         <li>Learn what defines a Single Page Application(SPA)</li>
         <li>Discuss how SPA compares to classical web application architecture</li>
@@ -92,8 +95,7 @@
             <li>Structured JavaScript with HTML</li>
             <li>Beginning to embrace HTML5 and CSS3</li>
             <ul>
-                <li>Need for Mobile Solution</li>
-                <li>Single Source</li>
+                <li>Need for a Mobile friendly solution</li>
                 <li>Testability across platforms</li>
                 <li>Desktop Application behaviors</li>
             </ul>
@@ -104,7 +106,7 @@
 <!--Compare SPA to Traditional -->
 <section>
     <section>
-        <h2>Comparing an SPA to a Traditional Web Application</h2>
+        <h2>SPA over Traditional</h2>
 
         <ul>
             <li>The server no longer composes the page.
@@ -122,7 +124,7 @@
         </ul>
     </section>
     <section>
-        <h2>Comparing an SPA to a Traditional Web Application</h2>
+        <h2>SPA over Traditional</h2>
 
         <ul>
             <li>Lots of reuse.
@@ -142,6 +144,13 @@
 
     </section>
 </section>
+<section><h2>Traffic Flow diagram</h2>
+    <ul>
+        <li>HTTP GET</li>
+        <li>JS Response</li>
+    </ul>
+</section>
+
 <!--Examples of SPA-->
 <section>
     <h2>Examples</h2>
@@ -172,6 +181,8 @@
         </div>
     </aside>
     <h2>SPA Frameworks and Libraries</h2>
+
+    <div style="display: inline-block;">
     <ul>
         <li>Backbone.js</li>
         <li>Knockout</li>
@@ -180,7 +191,15 @@
         <li>Ember</li>
         <li>Others...</li>
     </ul>
+
+    </div>
+    <div style="display: inline-block;margin-left: 2em;">
+        <img src="http://www.nvisia.com/sites/default/files/SPA-Trend-From-Indeed.png" alt=""/>
+
+    </div>
+
 </section>
+<section><h2>Slides for Backbone, Ember, Angular</h2></section>
 <!--Tool overview-->
 <section>
     <section><h2>Workshop tool overview - Backbone.js</h2>
@@ -204,6 +223,39 @@
 
             <p>Allows for good sizing across different browsers such as mobile, tablet and desktop</p>
         </aside>
+    </section>
+</section>
+<!--Narrative-->
+<section>
+
+    <section>
+        <p style="margin-bottom: 15px;">Monday morning...</p>
+
+        <p style="margin-bottom: 15px;">
+            Your boss wants to quickly deploy a restaurant reservation system to take advantage of a new public
+            rest
+            api created by the chamber of commerce.</p>
+
+        <p>It allows anyone to get information about restaurants and
+            make
+            reservations.
+        </p>
+
+        <p>The chamber of commerce plans to expand this service in the future, so she wants to
+            get in
+            on the ground floor.
+        </p>
+    </section>
+    <section>
+        <p style="margin-bottom: 15px;">
+            Since your boss wants this application quickly, the web designer has already created up a mock up
+            for
+            you to use in building the application.
+        </p>
+
+        <p> Since you’ve been hearing about building SPAs; you’ve decided to use Backbone to build the
+            application.
+        </p>
     </section>
     <section>
         <h2>Server Backend</h2>
@@ -259,41 +311,52 @@
         </table>
     </section>
 </section>
+<section><h2>Britesnow.com</h2>
+    <img src="img/html5-architecture-application.png" alt=""/>
+</section>
+<section><h2>Domain Model goes here</h2></section>
+<section><h2>Scoping our Modules</h2>
+    <!--<span style="font-size:  1.25rem;">-->
+        <pre class="grow"><code>
+            /*
+            * Snippet 1. Providing a scope for our modules.
+            */
+            (function () {
+            "use strict";
 
-<!--Narrative-->
-<section>
+            var RestaurantModule = {};
+            window.RestaurantModule = RestaurantModule;
 
-    <section>
-        <p style="margin-bottom: 15px;">Monday morning...</p>
-
-        <p style="margin-bottom: 15px;">
-            Your boss wants to quickly deploy a restaurant reservation system to take advantage of a new public
-            rest
-            api created by the chamber of commerce.</p>
-
-        <p>It allows anyone to get information about restaurants and
-            make
-            reservations.
-        </p>
-
-        <p>The chamber of commerce plans to expand this service in the future, so she wants to
-            get in
-            on the ground floor.
-        </p>
-    </section>
-    <section>
-        <p style="margin-bottom: 15px;">
-            Since your boss wants this application quickly, the web designer has already created up a mock up
-            for
-            you to use in building the application.
-        </p>
-
-        <p> Since you’ve been hearing about building SPAs; you’ve decided to use Backbone to build the
-            application.
-        </p>
-    </section>
+            return RestaurantModule; // Preparation for Require.js
+            })();
+            /*
+            * end
+            */
+        </code></pre>
+    <!--</span>-->
 </section>
 
+<!--Sample of final application-->
+
+<!--Code section-->
+<section>
+    <h4>
+        JavaScript Basics
+    </h4>
+
+    <p>...and then we'll start coding.</p>
+    <ul>
+        <li>What is meant by 'extend'.</li>
+        <li>The basic Model.</li>
+        <li>The basic Collection.</li>
+        <li>A quick wiring to REST.</li>
+    </ul>
+
+</section>
+
+<section><h2>Code steps here</h2></section>
+<section><h2>Taking it Further</h2></section>
+<section><h2>Contact Us (from Mark)</h2></section>
 <!--More Info-->
 <section><h2>More Information</h2>
 
