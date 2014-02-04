@@ -7,14 +7,11 @@ based on dark.css by Ivan Sagalaev
 
 pre code {
   display: block; padding: 0.5em;
-  /*background: #3F3F3F;*/
-  /*color: #DCDCDC;*/
-  background: #DCDCDC;
-  color: #3F3F3F;
+  background: #3F3F3F;
+  color: #DCDCDC;
 }
 
 pre .keyword,
-pre .built_in,
 pre .tag,
 pre .css .class,
 pre .css .id,
@@ -23,12 +20,7 @@ pre .nginx .title,
 pre .request,
 pre .status,
 pre .clojure .attribute {
-  color: #393;
-  /*color: #E3CEAB;*/
-}
-
-pre .built_in {
-  font-weight: bold;
+  color: #E3CEAB;
 }
 
 pre .django .template_tag,
@@ -80,14 +72,14 @@ pre .dos .winutils,
 pre .ruby .symbol,
 pre .ruby .symbol .string,
 pre .ruby .string {
-  color: #9A729A;
+  color: #DCA3A3;
 }
 
 pre .diff .deletion,
 pre .string,
 pre .tag .value,
 pre .preprocessor,
-/*pre .built_in,*/
+pre .built_in,
 pre .sql .aggregate,
 pre .javadoc,
 pre .smalltalk .class,
@@ -98,8 +90,7 @@ pre .attr_selector,
 pre .pseudo,
 pre .apache .cbracket,
 pre .tex .formula {
-  /*color: #CC9393;*/
-  color: #A33;
+  color: #CC9393;
 }
 
 pre .shebang,
@@ -109,7 +100,7 @@ pre .java .annotation,
 pre .template_comment,
 pre .pi,
 pre .doctype {
-  color: #777;
+  color: #7F9F7F;
 }
 
 pre .coffeescript .javascript,
