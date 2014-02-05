@@ -1,10 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 /**
  * Default theme for reveal.js.
  *
  * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 .reveal a:not(.image) {
   line-height: 1.3em; }
 
@@ -13,12 +13,12 @@
  *********************************************/
 body {
   background: #ff8500;
-  background: -moz-radial-gradient(center, circle cover, #ff8a0a 0%, #ff8500 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ff8a0a), color-stop(100%, #ff8500));
-  background: -webkit-radial-gradient(center, circle cover, #ff8a0a 0%, #ff8500 100%);
-  background: -o-radial-gradient(center, circle cover, #ff8a0a 0%, #ff8500 100%);
-  background: -ms-radial-gradient(center, circle cover, #ff8a0a 0%, #ff8500 100%);
-  background: radial-gradient(center, circle cover, #ff8a0a 0%, #ff8500 100%);
+  background: -moz-radial-gradient(center, circle cover, #ff8500 0%, #ff8500 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #ff8500), color-stop(100%, #ff8500));
+  background: -webkit-radial-gradient(center, circle cover, #ff8500 0%, #ff8500 100%);
+  background: -o-radial-gradient(center, circle cover, #ff8500 0%, #ff8500 100%);
+  background: -ms-radial-gradient(center, circle cover, #ff8500 0%, #ff8500 100%);
+  background: radial-gradient(center, circle cover, #ff8500 0%, #ff8500 100%);
   background-color: #ff8500; }
 
 .reveal {

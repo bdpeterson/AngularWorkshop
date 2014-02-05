@@ -38,7 +38,8 @@
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section><h2>JS HTML5 Web App Workshop</h2>
-<p>With Backbone, Handlebars and Zurb Foundation</p></section>
+
+    <p>With Backbone, Handlebars and Zurb Foundation</p></section>
 <!--<section data-background="img/logo-small.jpg" data-background-size="400px"></section>-->
 <!--Intro-->
 <section><h2>Nvisia Welcome slide...details from Mark</h2></section>
@@ -127,7 +128,7 @@
         <h2>SPA over Traditional</h2>
 
         <ul>
-            <li>Lots of reuse.
+            <li>Content reuse.
                 <ul>
                     <li>Page footer/header/menu is delivered once.</li>
                     <li>Constants delivered to browser as needed.</li>
@@ -182,20 +183,22 @@
     </aside>
     <h2>SPA Frameworks and Libraries</h2>
 
-    <div style="display: inline-block;">
-    <ul>
-        <li>Backbone.js</li>
-        <li>Knockout</li>
-        <li>CanJS</li>
-        <li>AngularJS</li>
-        <li>Ember</li>
-        <li>Others...</li>
-    </ul>
+    <div style="vertical-align: top;padding-top: 3em;">
 
-    </div>
-    <div style="display: inline-block;margin-left: 2em;">
-        <img src="http://www.nvisia.com/sites/default/files/SPA-Trend-From-Indeed.png" alt=""/>
+        <div style="display: inline-block;vertical-align: top;">
+            <ul>
+                <li>Backbone.js</li>
+                <li>Knockout</li>
+                <li>CanJS</li>
+                <li>AngularJS</li>
+                <li>Ember</li>
+                <li>Others...</li>
+            </ul>
 
+        </div>
+        <div style="display: inline-block;margin-left: 2em;vertical-align: top;">
+            <img src="http://www.nvisia.com/sites/default/files/SPA-Trend-From-Indeed.png" alt="SPA Trend"/>
+        </div>
     </div>
 
 </section>
@@ -314,10 +317,32 @@
 <section><h2>Britesnow.com</h2>
     <img src="img/html5-architecture-application.png" alt=""/>
 </section>
-<section><h2>Domain Model goes here</h2></section>
-<section><h2>Scoping our Modules</h2>
-    <!--<span style="font-size:  1.25rem;">-->
-        <pre class="grow"><code>
+<section><h2>Domain Model</h2>
+
+    <div>
+        <img width="60%" src="img/class-model.png"/>
+    </div>
+</section>
+
+<section>
+    <!-- Overview Code section-->
+    <section>
+        <h4>
+            JavaScript Basics
+        </h4>
+
+        <p>...and then we'll start coding.</p>
+        <ul>
+            <li>Scoping our Modules</li>
+            <li>What is meant by 'extend'.</li>
+        </ul>
+
+    </section>
+    <section><h2>Scoping our Modules</h2>
+
+        <div style="font-size: 0.8em;">
+        <pre class="brush: js; ">
+
             /*
             * Snippet 1. Providing a scope for our modules.
             */
@@ -332,44 +357,1521 @@
             /*
             * end
             */
-        </code></pre>
-    <!--</span>-->
-</section>
+        </pre>
+        </div>
+    </section>
+    <section>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; " data-trim>
+            /*
+             * Snippet 2. Understanding Extend
+             */
+            var car = {
+                type: 'car',
+                name: "betsy",
+                start: function() {
+                  console.log("starting up " + this.type + " " + this.name);
+                }
+            };
 
+            car.start();
+
+            var truck = {
+                type: 'truck',
+                name: 'mark',
+                honk: function() {
+                  console.log("honking horn of " + this.type + " " + this.name);
+                }
+            };
+            truck.honk();
+
+            var suv = _.extend(car, truck);
+            suv.name = 'george';
+            suv.type = 'suv';
+            suv.start();
+            suv.honk();
+            /*
+             * end
+             */
+        </pre>
+        </span>
+    </section>
+    <section>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+            /*
+             * Snippet 2 Output.
+             */
+
+            Input into Firebug:
+            >>> var car = {     type: 'car',  	name: "betsy",   ...  suv.type = 'suv';  suv.start();  suv.honk();
+
+            starting up car betsy
+            honking horn of truck mark
+            starting up suv george
+            honking horn of suv george
+
+            /*
+             * end
+             */
+        </pre>
+        </span>
+
+    </section>
+</section>
 <!--Sample of final application-->
-
-<!--Code section-->
+<section><h1>APPLICATION DEMO :)</h1></section>
 <section>
-    <h4>
-        JavaScript Basics
-    </h4>
+    <!-- Getting Started -->
+    <section>
+        <h3>Getting Started</h3>
+        <ul>
+            <li>The basic Model.</li>
+            <li>The basic Collection.</li>
+            <li>A quick wiring to REST.</li>
+        </ul>
+    </section>
 
-    <p>...and then we'll start coding.</p>
-    <ul>
-        <li>What is meant by 'extend'.</li>
-        <li>The basic Model.</li>
-        <li>The basic Collection.</li>
-        <li>A quick wiring to REST.</li>
-    </ul>
+    <!--Basic Model-->
+    <section>
+        <aside class="notes">
+            <p>Defaults are not required.</p>
+
+            <p>urlRoot is defined here because we will use it outside a collection</p>
+
+            <p>If we were only using Restaurant within a Collection, we wouldn't need to specify anything in the
+                model.</p>
+        </aside>
+        <h3>Creating a Basic Model</h3>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+            RestaurantModule.Restaurant = Backbone.Model.extend({
+                    defaults: {
+                        name: "not found"
+                    },
+                    urlRoot: "/restaurants"
+                });
+            /*
+             * end
+             */
+        </pre>
+        <a href="http://backbonejs.org/#Model" target="_blank">Backbone.js Model API</a>
+        </span>
+    </section>
+
+    <!--Basic Collection-->
+    <section>
+        <aside class="notes">
+            <p>By defining the model, we are able to retrieve the collection of models.</p>
+            <p>The area tagged with 'Input into Firebug' only works because of the time it takes to type.</p>
+            <p>Otherwise, the Restaurant collection would still be empty on the forEach.</p>
+            <p>The forEach is from Underscore</p>
+        </aside>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+        /*
+         * Snippet 4. A basic Collection    (restaurant.js)
+         */
+         RestaurantModule.RestaurantList = Backbone.Collection.extend({
+                model: RestaurantModule.Restaurant,
+                url: "/restaurants"
+            });
+
+
+        Input into Firebug:
+        >>> var restaurants = new RestaurantModule.RestaurantList();
+        >>> restaurants.fetch();
+        >>> restaurants.forEach(function(r) { console.log(r.get('name') + ": " + r.get('id')) } )
+
+        /*
+         * end
+         */
+        </pre>
+        <a href="http://backbonejs.org/#Collection" target="_blank">Backbone.js Collection API</a>
+        </span>
+    </section>
+    <!--Output of manual request-->
+    <section>
+        <aside class="notes">
+            <p>The results will vary due to node server creating the Restaurant Ids.</p>
+        </aside>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+            /*
+             * Snippet 4. Output
+             */
+
+            Zarletti: 1ldmpLEtHGLCNmsI
+            Mader's: BpbLDcavDPJN6Opm
+            Kil@Wat: T2qnz5DwVU5hA0ar
+            Sanford: U0ojeKMKybKeTLMx
+            Eddie Martini's: aHsEQCTPyxqJguXe
+            Hinterland Erie Street Gastropub: b0CoyLZckATxWzNd
+            Carson's Ribs: go3IM27PHqaCWn1f
+            Shogun: hInHppsH5Qv8momc
+            Harbor House: wTbi8kZaYFiuZF7b
+            Bartolotta's Lake Park Bistro: zEFtfkz3z3nx7qlh
+
+            /*
+             * end
+             */
+        </pre>
+        </span>
+
+    </section>
+    <!--End of Overview-->
+</section>
+
+<section>
+    <section>
+        <aside class="notes">
+            <strong>Clearly explain approach for exercises.</strong>
+            <ol>
+                <li>walk through code</li>
+                <li>answer any questions</li>
+                <li>Provide code on screen or via a link</li>
+                <li>assist getting it to work.</li>
+                <li>provide a reset point</li>
+            </ol>
+        </aside>
+        <h3>Exercise #1</h3>
+        <ol>
+            <li>Create&NonBreakingSpace;Model</li>
+            <li>Create&NonBreakingSpace;Collection</li>
+            <li>Test&NonBreakingSpace;behavior</li>
+        </ol>
+    </section>
+    <section>
+        <h3>Create Model and Collection</h3>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+            /**
+             * Restaurant Module
+             **/
+
+            (function () {
+                "use strict";
+
+                var RestaurantModule = {};
+                window.RestaurantModule = RestaurantModule;
+
+                RestaurantModule.Restaurant = Backbone.Model.extend({
+                    defaults: {
+                        name: "not found"
+                    },
+                    urlRoot: "/restaurants"
+                });
+
+                RestaurantModule.RestaurantList = Backbone.Collection.extend({
+                    model: RestaurantModule.Restaurant,
+                    url: "/restaurants"
+                });
+
+                return RestaurantModule;  // Preparation for Require.js
+            })();
+
+            /*
+             * end
+             */
+            </pre>
+            </span>
+    </section>
+    <section>
+        <h3>Test our results</h3>
+        <p>
+            Can view the restaurants with try_it.html
+        </p>
+        <a href="http://localhost:9000/try_it.html" target="_blank">http://localhost:9000/try_it.html</a>
+
+    </section>
+    <section>
+        <aside class="notes">
+            <p>Make sure that when showing the git checkout, that they know it will wipe out their code.</p>
+        </aside>
+        <h3>
+            Questions?
+        </h3>
+        <p></p>
+        <div class="fragment">
+            <p >To Reset, perform a git checkout</p>
+            <pre><code class="script">
+                Prompt:&gt; git checkout tags/EXERCISE1;
+                 or
+                Prompt:&gt; git checkout -f tags/EXERCISE1;
+            </code></pre>
+        </div>
+    </section>
+</section>
+
+
+<section>
+    <section>
+        <h2>Creating the View</h2>
+        <ul>
+            <li>Introducing Handlebars!</li>
+            <li>A Basic View.</li>
+            <li>A List View.</li>
+        </ul>
+    </section>
+    <!--Handlebars-->
+    <section>
+        <h3>Basic Template</h3>
+            <span style="font-size:  1.25rem;">
+            <pre class="brush: js; ">
+                <!--
+                  -- A basic Handlebars template
+                  -->
+
+                 <div class="row">
+                     {{#if hasData}}
+                     <div>
+                         <p>Price: {{showPrice price}}</p>
+                     </div>
+                     <div>
+                         <p>Rating: {{showRating rating}}</p>
+                     </div>
+                     <div>
+                         <p>Address: {{address}}</p>
+                     </div>
+                     {{/if}}
+                 </div>
+
+                 <!--
+                  -- A basic Handlebars template
+                  -->
+            </pre>
+            </span>
+
+    </section>
+    <section>
+        <h3>Handlebars Helper functions</h3>
+            <span style="font-size:  1.25rem;">
+            <pre class="brush: js; ">
+                Handlebars.registerHelper('showPrice', function(price) {
+                    var index, out = "";
+                    for (index = 1; index <= price; index++) {
+                        out += "$";
+                    }
+
+                    return out;
+                });
+            </pre>
+            </span>
+    </section>
+    <section>
+        <h3>More Complicated Template</h3>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+            <!--
+              -- Restaurant template (restaurant.handlebars)
+              -->
+             <div class="row">
+                 <div class="large-12 columns">
+                     <div class="callout panel">
+                         <p><strong>{{name}}</strong>{{#if tagline}}<br/>{{/if}}{{tagline}}</p>
+                         <div class="row">
+                             <div class="large-3 medium-6 small-12 columns">
+                                 <p>Price: {{showPrice price}}</p>
+                             </div>
+                             <div class="large-3 medium-6 small-12 columns">
+                                 <p>Rating: {{showRating rating}}</p>
+                             </div>
+                             <div class="large-6 medium-12 small-12 columns">
+                                 <p>Address: {{address}}</p>
+                             </div>
+                         </div>
+                         <p>Description: {{description}} </p>
+                         <div class="availableTimes">
+                             <a href="#restaurant/{{id}}" name="restaurant-{{id}}" class="button restaurantRow" style="color: white;">Show Times</a>
+                         </div>
+                         <div class="reservationForm"></div>
+                     </div>
+                 </div>
+             </div>
+             <!-- end -->
+        </pre>
+        </span>
+
+    </section>
+    <section>
+        <h3>Basic Backbone View</h3>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+            /*
+             *  A basic View  (restaurant.js)
+             */
+
+            RestaurantModule.RestaurantView = Backbone.View.extend({
+                initialize: function () {
+                    this.template = Handlebars.templates.restaurant;
+                },
+                render: function () {
+                    this.$el.html(this.template(this.model.toJSON()));
+                    return this;
+                }
+            });
+
+            /*
+             * end
+             */
+        </pre>
+        </span>
+    </section>
+    <section>
+        <h3>View containing a Backbone Collection</h3>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; highlight:[6,7,8,9,16,17]">
+
+        /*
+         *  A Collection View (restaurant.js)
+         */
+        RestaurantModule.RestaurantListView = Backbone.View.extend({
+            initialize: function () {
+                this.template = Handlebars.templates.restaurantListView;
+                this.restaurants = new RestaurantModule.RestaurantList();
+                this.listenTo(this.restaurants, "add", this.addRestaurantView);
+                this.restaurants.fetch();
+            },
+            render: function () {
+                this.$el.html(this.template(this));
+                return this;
+            },
+            addRestaurantView: function (restaurant) {
+                var view = new RestaurantModule.RestaurantView({model: restaurant});
+                this.$('.restaurantList').append(view.render().el);
+            },
+            count: function () {
+                return this.restaurants.length;
+            }
+        });
+        /* end */
+        </pre>
+        </span>
+    </section>
 
 </section>
 
+
+
+<section>
+    <p style="margin-bottom: 20px;">
+        Time to add a main controller. This can be done a few different ways.
+    <ul>
+        <li>Simple Main</li>
+        <li>Basic Router</li>
+        <li>Delegate to modules.</li>
+        <li>Routed Tabs</li>
+        <li>Etc...</li>
+    </ul>
+    </p>
+    <p style="margin-bottom: 20px;">
+        Let's do a simple main to display our restaurants in the mock up that the web designer provided. This would
+        give us something we could show our boss or bring to 'demo day' if we are doing Agile/Scrum.
+    </p>
+
+</section>
+
+<section>
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+
+    /*
+     *  A Simple Main     (application.js)
+     */
+    var allRestaurantView = new RestaurantModule.RestaurantListView();
+
+    var allRestaurantContent = $("#restaurant-list-main");
+
+    allRestaurantContent.empty();
+    allRestaurantContent.append(allRestaurantView.render().el);
+
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</section>
+
+<section>
+    <p style="margin-bottom: 20px;">
+    <ul>
+        <li>index.html should now be working and showing the Restaurants from the server.</li>
+    </ul>
+    </p>
+    <p style="margin-bottom: 20px;">
+        Questions?
+    </p>
+    <p>
+        @TODO Information on github TAG, etc.
+    </p>
+    <p>
+    <ul>
+        <li>What's Next?</li>
+        <li>We need to add code to select a restaurant and show available times.</li>
+    </ul>
+    </p>
+    <ol>
+        <li>Routers for selecting a restaurant.</li>
+        <li>A little JQuery to control the main view.</li>
+        <li>
+            Modifications to modules and views.
+            <ol>
+                <li>Get reservations from the server.</li>
+                <li>Add a time slot View.</li>
+                <li>Modify restaurant View to show times.</li>
+            </ol>
+        </li>
+        <li>Looping: Template VS Views</li>
+    </ol>
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-14" class="step" data-x="2000" data-y="4000" >
+
+        <span style="font-size:  1rem;">
+        <a class="jump" href="#hb-template-1">Back to the template.</a>
+        <pre class="brush: js; ">
+    /*
+     * Create our router. (application.js)
+     */
+    $(document).ready(function(){
+        var allRestaurantView = new RestaurantModule.RestaurantListView();
+
+        var allRestaurantContent = $("#restaurant-list-main");
+        var singleRestaurantContent = $("#selected-restaurant-main");
+
+        allRestaurantContent.empty();
+        allRestaurantContent.append(allRestaurantView.render().el);
+
+        new (Backbone.Router.extend({
+            routes: {
+                "":"showRestaurants",
+                "restaurant/:id": "selectRestaurant"
+            },
+            showRestaurants :function() {
+                allRestaurantContent.show();
+                singleRestaurantContent.hide();
+            },
+            selectRestaurant: function(id) {
+                allRestaurantContent.hide();
+                singleRestaurantContent.show();
+
+                var selected = allRestaurantView.getRestaurantById(id);
+                var singleRestaurantView = new RestaurantModule.RestaurantView({model:selected});
+                singleRestaurantContent.empty().append(singleRestaurantView.el);
+                singleRestaurantView.showTimes();
+            }
+        }))();
+
+        allRestaurantView.on('ready', function() {
+            Backbone.history.start();
+        });
+    });
+    /*
+     * end
+     */
+        </pre>
+
+
+
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-15" class="step" data-x="3000" data-y="4000" >
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; highlight: [13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]">
+    /*
+     *  Update Restaurant to fetch its reservations.  (restaurant.js)
+     */
+   RestaurantModule.Restaurant = Backbone.Model.extend({
+        defaults: {
+            name: "undefined",
+            location: "",
+            reservations: [],
+            availableTimes: []
+        },
+        urlRoot: "/restaurants",
+        fetchReservations: function () {
+            $.ajax('/restaurants/' + this.get('id') + '/reservations', {
+                context: this,
+                success: function (response) {
+                    this.set({
+                        'reservations': response.reservations,
+                        'availableTimes': response.available
+                    });
+                    this.trigger('fetchComplete');
+                },
+                failure: function () {
+                    console.log(['Something strange is afoot', arguments]);
+                }
+            });
+        }
+    });
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-16" class="step" data-x="4000" data-y="4000" >
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+    /*
+     *  Add a TimeSlotView to show the times. (restaurant.js)
+     */
+    RestaurantModule.TimeSlotView = Backbone.View.extend({
+        initialize:function(options){
+            this.template = Handlebars.templates.availableTimes;
+        },
+        render:function(){
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
+    });
+
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-17" class="step" data-x="5000" data-y="4000" >
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; highlight:[5,6,7,14,15,16,19,20,21,22,23]">
+    /*
+     *  Update the RestaurantView to show the times.   (restaurant.js)
+     */
+    RestaurantModule.RestaurantView = Backbone.View.extend({
+        defaults: {
+            selected:false
+        },
+        initialize: function () {
+            this.template = Handlebars.templates.restaurant;
+            this.listenTo(this.model, 'fetchComplete', this.render);
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            if (this.selected){
+                this.$el.find(".availableTimes").html(this.availableTimes.render().el);
+            }
+            return this;
+        },
+        showTimes: function(){
+            this.selected=true;
+            this.availableTimes = new RestaurantModule.TimeSlotView({model:this.model});
+            this.model.fetchReservations();
+        }
+    });
+
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-18" class="step" data-x="6000" data-y="4000" >
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js; highlight:[9,10,11,33,34,35,36]">
+    /*
+     *  Update the RestaurantView to add an event!    (restaurant.js)
+     */
+      RestaurantModule.RestaurantView = Backbone.View.extend({
+        defaults: {
+            formView: undefined,
+            selected:false
+        },
+        events: {
+            'click .availableTime': 'selectTime'
+        },
+        initialize: function () {
+            this.template = Handlebars.templates.restaurant;
+            this.listenTo(this.model, 'fetchComplete', this.render);
+        },
+        render: function () {
+            if (this.formView) {
+                this.$el.find('.reservationForm').detach();
+                this.formView=undefined;
+            }
+
+            this.$el.html(this.template(this.model.toJSON()));
+            if (this.selected){
+                this.$el.find(".availableTimes").html(this.availableTimes.render().el);
+            }
+            return this;
+        },
+        showTimes: function(){
+            this.selected=true;
+            this.availableTimes = new RestaurantModule.TimeSlotView({model:this.model});
+            this.model.fetchReservations();
+        },
+        selectTime: function (event) {
+            var reservationTime = parseInt(event.currentTarget.getAttribute('value'));
+            console.log("selected time: " + reservationTime);
+        }
+    });
+
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-19" class="step" data-x="7000" data-y="4000" >
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js; highlight:[10,11,12,13,26,27,28]">
+    /*
+     *  Update the RestaurantListView to notify listeners when it is done loading.  (restaurant.js)
+     */
+      RestaurantModule.RestaurantListView = Backbone.View.extend({
+        initialize: function () {
+            this.template = Handlebars.templates.restaurantListView;
+            this.restaurants = new RestaurantModule.RestaurantList();
+            this.listenTo(this.restaurants, "add", this.addRestaurantView);
+
+            _.bindAll(this, "fireReadyEvent");
+            this.restaurants.fetch({
+                success: this.fireReadyEvent
+            });
+        },
+        render: function () {
+            this.$el.html(this.template(this));
+            return this;
+        },
+        addRestaurantView: function (restaurant) {
+            var view = new RestaurantModule.RestaurantView({model: restaurant});
+            this.$('.restaurantList').append(view.render().el);
+        },
+        count: function () {
+            return this.restaurants.length;
+        },
+        fireReadyEvent: function () {
+            this.trigger('ready');
+        },
+        getRestaurantById:function(id){
+            return this.restaurants.get(id);
+        }
+    });
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="hb-template-2" class="step" data-x="8000" data-y="4000" >
+        <span style="font-size:  1.25rem;">
+        <pre class="brush: js; ">
+    <!--
+      -- Available Times template (availableTimes.handlebars)
+      -->
+
+     <form>
+         <fieldset>
+             <legend>Available Times</legend>
+
+             <div class="row">
+                 {{#each availableTimes}}
+                 <div class="large-3 medium-4 small-6 columns availableTime" value="{{this}}">
+                     {{showTime this}}
+                 </div>
+                 {{/each}}
+             </div>
+         </fieldset>
+     </form>
+
+     <!--
+      -- end
+      -->
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<div id="compare-1" class="step "  data-x="7500" data-y="4000" data-scale="1.25">
+
+</div>
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="text-4" class="step slide" data-x="1000" data-y="6000">
+    <p style="margin-bottom: 20px;">
+    <ul>
+        <li>You should now be able to select a restaurant, and then select a time.</li>
+    </ul>
+    </p>
+    <p style="margin-bottom: 20px;">
+        Questions?
+    </p>
+    <p>
+        @TODO Information on github TAG, etc.
+    </p>
+    <p>
+    <ul>
+        <li>What's Next?</li>
+        <li>We need to create a Reservation model and form so we can add a reservation.</li>
+    </ul>
+    </p>
+    <ol>
+        <li>Reservation Model</li>
+        <li>Reservation View (A form)</li>
+        <li>Update our Restaurant View to show the Reservation Form.</li>
+        <li>Discuss the back/forward buttons.</li>
+    </ol>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-20" class="step" data-x="2000" data-y="6000" >
+        <span style="font-size:  1.5rem;">
+        <pre class="brush: js;">
+    /*
+     *  Create a Reservation Model. (reservation.js)
+     */
+    Reservation.Model = Backbone.Model.extend({
+        urlRoot: "/reservations"
+    });
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-21" class="step" data-x="3000" data-y="6000" >
+        <span style="font-size:  1.2rem;">
+        <pre class="brush: js;">
+    /*
+     *  Create a Reservation Form View. (reservation.js)
+     */
+     Reservation.FormView = Backbone.View.extend({
+        initialize: function (options) {
+            this.template = Handlebars.templates.reservationForm;
+            this.model = new Reservation.Model({
+                restaurantId: options.restaurantId,
+                time: options.reservationTime
+            });
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
+    });
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-22" class="step" data-x="4000" data-y="6000" >
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js; highlight:[6,17,18,19,20,33,34,35,36,37,38,39,40,41]">
+    /*
+     *  Modify the Restaurant View to show the Reservation Form (restaurant.js)
+     */
+      RestaurantModule.RestaurantView = Backbone.View.extend({
+        defaults: {
+            formView: undefined,
+            selected:false
+        },
+        events: {
+            'click .availableTime': 'selectTime'
+        },
+        initialize: function () {
+            this.template = Handlebars.templates.restaurant;
+            this.listenTo(this.model, 'fetchComplete', this.render);
+        },
+        render: function () {
+            if (this.formView) {
+                this.$el.find('.reservationForm').detach();
+                this.formView=undefined;
+            }
+
+            this.$el.html(this.template(this.model.toJSON()));
+            if (this.selected){
+                this.$el.find(".availableTimes").html(this.availableTimes.render().el);
+            }
+            return this;
+        },
+        showTimes: function(){
+            this.selected=true;
+            this.availableTimes = new RestaurantModule.TimeSlotView({model:this.model});
+            this.model.fetchReservations();
+        },
+        selectTime: function (event) {
+            var reservationTime = parseInt(event.currentTarget.getAttribute('value'));
+            var view = new Reservation.FormView({
+                restaurantId: this.model.get('id'),
+                reservationTime: reservationTime
+            });
+            this.formView = view;
+            this.$('.reservationForm').empty().append(view.render().el);
+        }
+    });
+    /*
+     * end
+     */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="text-5" class="step slide" data-x="5000" data-y="6000">
+    <p style="margin-bottom: 20px;">
+    <ul>
+        <li>The Back Button</li>
+    </ul>
+    </p>
+    <p style="margin-bottom: 20px;">
+        The Back button should work! So should bookmarks!
+    </p>
+    <ul>
+        <li>The application doesn't process routes until data is ready.</li>
+        <li>Routes are used to direct the front end.</li>
+    </ul>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="text-6" class="step slide" data-x="1000" data-y="8000">
+    <p style="margin-bottom: 20px;">
+    <ul>
+        <li>You should now be able to select a restaurant, and then select a time.</li>
+        <li>Selecting a time should present the Reservation form.</li>
+    </ul>
+    </p>
+    <p style="margin-bottom: 20px;">
+        Questions?
+    </p>
+    <p>
+        @TODO Information on github TAG, etc.
+    </p>
+    <p>
+    <ul>
+        <li>What's Next?</li>
+        <li>We need to process the Reservation form, sending the information to the server and showing confirmation.</li>
+    </ul>
+    </p>
+    <ol>
+        <li>Modify Reservation Form View to process input.</li>
+        <li>Add code to save the Reservation on the server.</li>
+        <li>Adding an additional 'confirmation' View.
+            <ul>
+                <li>Add a Reservation view that isn't a form.</li>
+                <li>Add an additional Route to view a Reservation as a confirmation.</li>
+            </ul>
+        </li>
+    </ol>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-23" class="step" data-x="2000" data-y="8000" >
+        <span style="font-size:  .8rem;">
+        <pre class="brush: js; highlight:[12]">
+     //  Modify Reservation Form View to add events. (reservation.js)
+     Reservation.FormView = Backbone.View.extend({
+        events: {
+            'change input[type="text"]': 'changeGenericValue',
+            'change input[type="number"]': 'changeGenericValue',
+            'change select': 'changeGenericValue',
+            "keypress input[type='text']": 'actOnEnter',
+            "keypress input[type='number']": 'actOnEnter',
+            'click .submitButton': 'submitReservationRequest',
+            'click .cancelButton': 'cancelReservationRequest'
+        },
+        initialize: function (options) { /* Code Cut For Brevity */  },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        },
+        changeGenericValue: function (event) {
+            var sValue = $(event.currentTarget).val();
+            var sName = $(event.currentTarget).attr("name");
+
+            // This creates a data binding to the model based on the attributes name/value pair.
+            var temp = {};
+            temp[sName] = sValue;
+
+            this.model.set(temp, {silent: true});
+        },
+        actOnEnter: function (event) {
+            if (event.keyCode != 13) {
+                return;
+            }
+
+            event.preventDefault();
+            this.changeGenericValue(event);
+        },
+        submitReservationRequest: function () {
+            this.model.save(this.model,
+                {wait: true,
+                    success: function (model, response, options) {
+                        Backbone.history.navigate("/reservation/"+model.id,{trigger:true});
+                    },
+                    error: function (model, xhr, options) {
+                        console.log("Snap goes the request.");
+                    }
+                }
+            );
+            return false;
+        },
+        cancelReservationRequest: function () {
+            this.remove();
+            return false;
+        }
+    });
+    // end
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-24" class="step" data-x="3000" data-y="8000" >
+        <span style="font-size:  .8rem;">
+        <pre class="brush: js; highlight:[12]">
+     //  Modify Reservation Form View to add events. (reservation.js)
+     Reservation.FormView = Backbone.View.extend({
+        events: {
+            'change input[type="text"]': 'changeGenericValue',
+            'change input[type="number"]': 'changeGenericValue',
+            'change select': 'changeGenericValue',
+            "keypress input[type='text']": 'actOnEnter',
+            "keypress input[type='number']": 'actOnEnter',
+            'click .submitButton': 'submitReservationRequest',
+            'click .cancelButton': 'cancelReservationRequest'
+        },
+        initialize: function (options) { /* Code Cut For Brevity */  },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        },
+        changeGenericValue: function (event) {
+            var sValue = $(event.currentTarget).val();
+            var sName = $(event.currentTarget).attr("name");
+
+            // This creates a data binding to the model based on the attributes name/value pair.
+            var temp = {};
+            temp[sName] = sValue;
+
+            this.model.set(temp, {silent: true});
+        },
+        actOnEnter: function (event) {
+            if (event.keyCode != 13) {
+                return;
+            }
+
+            event.preventDefault();
+            this.changeGenericValue(event);
+        },
+        submitReservationRequest: function () {
+            this.model.save(this.model,
+                {wait: true,
+                    success: function (model, response, options) {
+                        Backbone.history.navigate("/reservation/"+model.id,{trigger:true});
+                    },
+                    error: function (model, xhr, options) {
+                        console.log("Snap goes the request.");
+                    }
+                }
+            );
+            return false;
+        },
+        cancelReservationRequest: function () {
+            this.remove();
+            return false;
+        }
+    });
+    // end
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-25" class="step" data-x="4000" data-y="8000" >
+        <span style="font-size:  .8rem;">
+        <pre class="brush: js; ">
+     // Create a Reservation View (reservation.js)
+        Reservation.View = Backbone.View.extend({
+        events:{
+            'click .reset':'closeReservationView'
+        },
+        initialize: function () {
+            this.template = Handlebars.templates.reservation;
+            this.model = new Reservation.Model();
+            this.restaurant = new RestaurantModule.Restaurant();
+
+            this.listenTo(this.model,"sync",this.fetchRestaurant);
+            this.listenTo(this.model,"change",this.render);
+            _.bindAll(this,"fetchRestaurantSuccess");
+            _.bindAll(this,"fetchReservationSuccess");
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        },
+        closeReservationView:function(){
+            Backbone.history.navigate("/",{trigger:true});
+        },
+        fetchRestaurant:function(){
+            this.restaurant.set({id:this.model.get("restaurantId")},{silent:true});
+            this.restaurant.fetch({
+                success: this.fetchRestaurantSuccess,
+                error: function (model, xhr, options) {
+                    console.log("Snap goes the request.");
+                }
+            });
+        },
+        fetchRestaurantSuccess:function(model, response, options) {
+            this.model.set({restaurantName:model.get('name')});
+        },
+        fetchReservationSuccess:function(model, response, options) {
+            this.restaurant.set({id:model.get("restaurantId")});
+        },
+        fetchReservation:function(reservationId){
+            this.model.set({id:reservationId},{silent:true});
+            this.model.fetch({
+                    success: this.fetchReservationSuccess,
+                    error: function (model, xhr, options) {
+                        console.log("Snap goes the request.");
+                    }
+                }
+            );
+        }
+    });
+    // end
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-26" class="step" data-x="5000" data-y="8000" >
+        <span style="font-size:  .8rem;">
+        <pre class="brush: js; highlight:[6,15,21,26,33,34,35,36,37,38,39,40]">
+     // Add a Reservation route to view completed reservations. (application.js)
+     $(document).ready(function(){
+        var allRestaurantView = new RestaurantModule.RestaurantListView();
+        var allRestaurantContent = $("#restaurant-list-main");
+        var singleRestaurantContent = $("#selected-restaurant-main");
+        var reservationResultContent = $("#show-reservation-main");
+
+        allRestaurantContent.empty();
+        allRestaurantContent.append(allRestaurantView.render().el);
+
+        new (Backbone.Router.extend({
+            routes: {
+                "":"showRestaurants",
+                "restaurant/:id": "selectRestaurant",
+                "reservation/:id":"showReservationResult"
+            },
+
+            showRestaurants :function() {
+                allRestaurantContent.show();
+                singleRestaurantContent.hide();
+                reservationResultContent.hide();
+            },
+            selectRestaurant: function(id) {
+                allRestaurantContent.hide();
+                singleRestaurantContent.show();
+                reservationResultContent.hide();
+
+                var selected = allRestaurantView.getRestaurantById(id);
+                var singleRestaurantView = new RestaurantModule.RestaurantView({model:selected});
+                singleRestaurantContent.empty().append(singleRestaurantView.el);
+                singleRestaurantView.showTimes();
+            },
+            showReservationResult:function(id){
+                allRestaurantContent.hide();
+                singleRestaurantContent.hide();
+                reservationResultContent.show();
+                var reservationView = new Reservation.View();
+                reservationResultContent.empty().append(reservationView.el);
+                reservationView.fetchReservation(id);
+            }
+        }))();
+
+        allRestaurantView.on('ready', function() {
+            Backbone.history.start();
+        });
+    });
+    // end
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="text-7" class="step slide" data-x="1000" data-y="10000">
+    <p style="margin-bottom: 20px;">
+    <ul>
+        <li>You should now be able to select a restaurant, and then select a time.</li>
+        <li>Selecting a time should present the Reservation form.</li>
+        <li>Submitting the form should present the Reservation page.</li>
+    </ul>
+    </p>
+    <p style="margin-bottom: 20px;">
+        Questions?
+    </p>
+    <p>
+        @TODO Information on github TAG, etc.
+    </p>
+    <p>
+    <ul>
+        <li>What's Next?</li>
+        <li>It's time to add validation to our reservation form.</li>
+    </ul>
+    </p>
+    <ol>
+        <li>A quick overview of validation.</li>
+        <li>Add the Backbone.validation plugin.</li>
+        <li>Add validation or our Reservation form View.</li>
+    </ol>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-27" class="step" data-x="2000" data-y="10000" >
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js;">
+    // Override how Backbone.validation handles validation messages. (application.js)
+
+    // Extend backbone to find our error-box and show errors.
+    _.extend(Backbone.Validation.callbacks, {
+        valid: function (view, attr, selector) {
+            view.$('[' + selector + '=' + attr + ']').removeClass('invalid');
+            // remove from the list; and if empty; hide it.
+            view.$('.error-box').find('li[name=' + attr + ']').remove();
+            if (view.$('.error-box').find('ul li').length == 0) {
+                view.$('.error-box').hide();
+            }
+        },
+        invalid: function (view, attr, error, selector) {
+            view.$('[' + selector + '=' + attr + ']').addClass('invalid');
+            // show container, add to list (with name!).
+            view.$('.error-box').find('li[name=' + attr + ']').remove();
+            view.$('.error-box').show().find('.error-list').append(
+                '<li name="' + attr + '">' + error + '</li>');
+        }
+    });
+    // end
+    <!--
+        <div class="error-box">
+            <ul class="error-list"></ul>
+        </div>
+    -->
+    /*
+    input.invalid {
+        border: 2px solid red;
+        background: yellow;
+        font-size: 1.1em;
+    }
+    */
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-28" class="step" data-x="3000" data-y="10000" >
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js; highlight: [4,29]">
+    // Add validation to the Reservation model. (reservation.js)
+    Reservation.Model = Backbone.Model.extend({
+        urlRoot: "/reservations",
+        validation: {
+            name: {
+                required: true,
+                minLength: 2,
+                msg: "Please enter a valid first name"
+            },
+            phone: {
+                required: true,
+                fn: function (value) {
+                    if (value !== undefined) {
+                        var check = value.replace(/[\s\(\)]/g, '');
+                        if (check.match(/^1?-?(\d{3})?-?\d{3}-?\d{4}$/) === null) {
+                            return "Please enter a valid phone number"
+                        }
+                    }
+                }
+            },
+            guests: {
+                required: true,
+                pattern: 'digits',
+                range: [1, 10]
+            },
+            time: {
+                required: true
+            }
+        }
+    });
+
+    // end
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-29" class="step" data-x="4000" data-y="10000" >
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js; highlight: [11,20,21,31]">
+    // Modify the submission of the form to check validation. (reservation.js)
+    Reservation.FormView = Backbone.View.extend({
+        events: { /* ... */ },
+        initialize: function (options) {
+            this.template = Handlebars.templates.reservationForm;
+            this.model = new Reservation.Model({
+                restaurantId: options.restaurantId,
+                time: options.reservationTime
+            });
+
+            Backbone.Validation.bind(this);
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        },
+        changeGenericValue: function (event) { /* ... */ },
+        actOnEnter: function (event) {  /* ... */  },
+        submitReservationRequest: function () {
+            var validationResults = this.model.validate();
+            if (this.model.isValid()) {
+                this.model.save(null, {
+                    success: function (model, response, options) {
+                        console.log("SUCCESS");
+                        Backbone.history.navigate("reservation/" + model.id, { trigger:true });
+                    },
+                    error: function (model, xhr, options) {
+                        console.log("Snap goes the request.");
+                    }
+                });
+            }
+            return false;
+        },
+        cancelReservationRequest: function () {
+            this.remove();
+            return false;
+        }
+    });
+
+    // end
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="text-8" class="step slide" data-x="1000" data-y="12000">
+    <p style="margin-bottom: 20px;">
+    <ul>
+        <li>You should now be able to select a restaurant, and then select a time.</li>
+        <li>Selecting a time should present the Reservation form.</li>
+        <li>Submitting the form should present the Reservation page.</li>
+        <li>You should no longer be able to commit an invalid reservation form.</li>
+    </ul>
+    </p>
+    <p style="margin-bottom: 20px;">
+        Questions?
+    </p>
+    <p>
+        There is no Github tag, this was includes with the Validation code.
+    </p>
+    <p>
+    <ul>
+        <li>What's Next?</li>
+        <li>Testing with QUnit.</li>
+    </ul>
+    </p>
+    <ol>
+        <li>We'll use QuUnit to test some our form validation.</li>
+    </ol>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="code-30" class="step" data-x="2000" data-y="12000" >
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js;">
+     // Modify the submission of the form to check validation. (reservation.js)
+     var getReservation = function() {
+        return new Reservation.Model({
+            id: 'abc123',
+            restaurantId: 'zyx987',
+            name: 'Jerry Rice',
+            phone: '1-800-123-4567',
+            guests: 1,
+            time: new Date().getTime()
+        });
+    };
+
+    test("name-validation", function() {
+        expect(2);
+
+        var reservation = getReservation();
+        ok(reservation.isValid(true), "Check valid model");
+
+        reservation = getReservation();
+        reservation.set('name', 'A');
+        ok(reservation.isValid(true) === false, "Name is too short");
+    });
+
+    test("guests-validation", function() {
+
+    });
+
+    test("time-validation", function() {
+
+    });
+
+    test("phone-validation", function() {
+
+    });
+
+    // end
+
+        </pre>
+        </span>
+</div>
+<!-- ************************************************************* -->
+</section>
+
+<section>
+<!-- ************************************************************* -->
+<div id="text-9" class="step slide" data-x="1000" data-y="14000">
+    <p style="margin-bottom: 20px;">
+    <ul>
+        <li>You should now be able to select a restaurant, and then select a time.</li>
+        <li>Selecting a time should present the Reservation form.</li>
+        <li>Submitting the form should present the Reservation page.</li>
+        <li>You should no longer be able to commit an invalid reservation form.</li>
+        <li>We have some basic tests in place for our form.</li>
+    </ul>
+    </p>
+    <p style="margin-bottom: 20px;">
+        Questions?
+    </p>
+    <p>
+    <ul>
+        <li>What's Next?</li>
+        <li>Advanced Topics Demos</li>
+    </ul>
+    </p>
+    <ol>
+        <li>If we have time, we'll demo some advanced topics to give you an idea of their role in your project.</li>
+        <li>Security</li>
+        <li>Mobile</li>
+    </ol>
+</div>
+</section>
+
+<!-- ************************************************************* -->
 <section><h2>Code steps here</h2></section>
-<section><h2>Taking it Further</h2></section>
+<section><h2>Taking it Further</h2>
+
+</section>
 <section><h2>Contact Us (from Mark)</h2></section>
 <!--More Info-->
 <section><h2>More Information</h2>
 
-    <p><a href="http://backbonejs.org/" target="_blank">Backbone.js</a></p>
+    <p><a href="http://backbonejs.org/" target="_blank">Backbone.js - http://backbonejs.org</a></p>
 
-    <p><a href="http://underscorejs.org/" target="_blank">Underscore.js</a></p>
+    <p><a href="http://underscorejs.org/" target="_blank">Underscore.js - http://underscorejs.org</a></p>
 
-    <p><a href="http://handlebarsjs.com" target="_blank">Handlebars</a></p>
+    <p><a href="http://handlebarsjs.com" target="_blank">Handlebars - http://handlebarsjs.com</a></p>
 
+    <aside class="notes">
+        Microsoft's opinion on SPA.
     <p><a href="http://msdn.microsoft.com/en-us/magazine/dn463786.aspx" target="_blank">Microsoft SPA with
         ASP.Net</a></p>
+    </aside>
 </section>
-</div>
 
 </div>
 
@@ -385,7 +1887,7 @@
         center: true,
 
         theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
 
         // Parallax scrolling
         // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
@@ -413,8 +1915,18 @@
             } }
         ]
     });
+    Reveal.configure({ slideNumber: true });
+
 
 </script>
+<script type="text/javascript" src="scripts/shCore.js"></script>
+
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+<link rel="stylesheet" type="text/css" href="styles/shThemeDefault.css"/>
+
+
+<script type="text/javascript">SyntaxHighlighter.all();</script>
 
 </body>
 </html>

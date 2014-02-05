@@ -36,7 +36,7 @@ $selectionBackgroundColor: #134674;
 // Background generator
 @mixin bodyBackground() {
     //@include radial-gradient( #999, #FCFCFC );
-    @include radial-gradient( #FF8500, lighten( #FF8500, 2%) );
+    @include radial-gradient( #FF8500, lighten( #FF8500, 0%) );
 }
 
 // Theme template ------------------------------
