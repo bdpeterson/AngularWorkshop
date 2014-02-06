@@ -82,9 +82,9 @@
             <li>Tablet market share has exploded</li>
         </ul>
     </aside>
-    <h2>How did we get here?</h2>
+    <h3>How did we get here?</h3>
 
-    <p>HTML from the beginning</p>
+    <h5>HTML from the beginning</h5>
     <ul>
         <li>Static HTML content</li>
         <li>Web Forms, Struts, ASP</li>
@@ -107,7 +107,7 @@
 <!--Compare SPA to Traditional -->
 <section>
     <section>
-        <h2>SPA over Traditional</h2>
+        <h3>SPA over Traditional</h3>
 
         <ul>
             <li>The server no longer composes the page.
@@ -125,7 +125,7 @@
         </ul>
     </section>
     <section>
-        <h2>SPA over Traditional</h2>
+        <h3>SPA over Traditional</h3>
 
         <ul>
             <li>Content reuse.
@@ -145,7 +145,7 @@
 
     </section>
 </section>
-<section><h2>Traffic Flow diagram</h2>
+<section><h3>Traffic Flow diagram</h3>
     <ul>
         <li>HTTP GET</li>
         <li>JS Response</li>
@@ -154,7 +154,7 @@
 
 <!--Examples of SPA-->
 <section>
-    <h2>Examples</h2>
+    <h3>Examples</h3>
 
     <div style="text-align: center;">
         <ul>
@@ -181,7 +181,7 @@
             </ul>
         </div>
     </aside>
-    <h2>SPA Frameworks and Libraries</h2>
+    <h3>SPA Frameworks and Libraries</h3>
 
     <div style="vertical-align: top;padding-top: 3em;">
 
@@ -202,31 +202,19 @@
     </div>
 
 </section>
-<section><h2>Slides for Backbone, Ember, Angular</h2></section>
+<section><h3>Slides for Backbone, Ember, Angular</h3></section>
 <!--Tool overview-->
-<section>
-    <section><h2>Workshop tool overview - Backbone.js</h2>
+<section><h3>Workshop tool overview</h3>
 
-        <p><a href="http://backbonejs.org/" target="_blank">Backbone.js</a></p>
-    </section>
-    <section><h2>Workshop tool overview - Underscore.js</h2>
+    <p><a href="http://backbonejs.org/" target="_blank">Backbone.js</a></p>
+    <p><a href="http://underscorejs.org/" target="_blank">Underscore.js</a></p>
+    <p><a href="http://handlebarsjs.com" target="_blank">Handlebars</a></p>
+    <p><a href="http://foundation.zurb.com" target="_blank">Zurb Foundation for Responsive Web</a></p>
+    <aside class="notes">
+        <p>Typical layout is a 12 column wide view port</p>
 
-        <p><a href="http://underscorejs.org/" target="_blank">Underscore.js</a></p>
-    </section>
-    <section><h2>Workshop tool overview - Handlebars.js</h2>
-
-        <p><a href="http://handlebarsjs.com" target="_blank">Handlebars</a></p>
-    </section>
-    <section><h2>Workshop tool overview - Zurb Foundation</h2>
-
-        <p><a href="http://foundation.zurb.com" target="_blank">Zurb Foundation for Responsive Web</a></p>
-        <aside class="notes">
-
-            <p>Typical layout is a 12 column wide view port</p>
-
-            <p>Allows for good sizing across different browsers such as mobile, tablet and desktop</p>
-        </aside>
-    </section>
+        <p>Allows for good sizing across different browsers such as mobile, tablet and desktop</p>
+    </aside>
 </section>
 <!--Narrative-->
 <section>
@@ -234,20 +222,25 @@
     <section>
         <p style="margin-bottom: 15px;">Monday morning...</p>
 
-        <p style="margin-bottom: 15px;">
-            Your boss wants to quickly deploy a restaurant reservation system to take advantage of a new public
-            rest
-            api created by the chamber of commerce.</p>
+        <div class="fragment">
+            <p style="margin-bottom: 15px;">
+                Your boss wants to quickly deploy a restaurant reservation system to take advantage of a new public
+                rest
+                api created by the chamber of commerce.</p>
 
-        <p>It allows anyone to get information about restaurants and
-            make
-            reservations.
-        </p>
+            <p>It allows anyone to get information about restaurants and
+                make
+                reservations.
+            </p>
 
-        <p>The chamber of commerce plans to expand this service in the future, so she wants to
-            get in
-            on the ground floor.
-        </p>
+            <p>The chamber of commerce plans to expand this service in the future, so she wants to
+                get in
+                on the ground floor.
+            </p>
+
+        </div>
+
+
     </section>
     <section>
         <p style="margin-bottom: 15px;">
@@ -261,7 +254,7 @@
         </p>
     </section>
     <section>
-        <h2>Server Backend</h2>
+        <h3>Server Backend</h3>
 
         <p>Node.js running a filesystem database</p>
         <aside class="notes">
@@ -314,10 +307,10 @@
         </table>
     </section>
 </section>
-<section><h2>Britesnow.com</h2>
+<section><h3>Britesnow.com</h3>
     <img src="img/html5-architecture-application.png" alt=""/>
 </section>
-<section><h2>Domain Model</h2>
+<section><h3>Domain Model</h3>
 
     <div>
         <img width="60%" src="img/class-model.png"/>
@@ -338,7 +331,7 @@
         </ul>
 
     </section>
-    <section><h2>Scoping our Modules</h2>
+    <section><h3>Scoping our Modules</h3>
 
         <div style="font-size: 0.8em;">
         <pre class="brush: js; ">
@@ -361,10 +354,71 @@
         </div>
     </section>
     <section>
+        <h3>Closures</h3>
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js; " data-trim>
+            var Car = function(make, model) {
+                this.make = make;
+                this.model = model;
+            };
+
+            _.extend(Car.prototype, {
+                drive: function() {
+                    console.log('Vrooooom')
+                },
+                honk: function() {
+                    console.log('Beep Beep');
+                },
+                toString: function() {
+                    console.log("Hello world! I'm a " + this.make + " " + this.model + "!");
+                }
+            });
+
+            var Truck = function() {
+                Car.prototype.constructor.apply(this, arguments);
+            };
+            _.extend(Truck.prototype, Car.prototype, {
+                honk: function () {
+                    console.log('Hoooonk');
+                },
+                tow: function(thing) {
+                    console.log('Towing ' + thing);
+                }
+            });
+        </pre>
+            </span>
+    </section>
+    <section>
+        <h3>Closure Method usage and Results</h3>
+        <span style="font-size:  1.0rem;">
+            <pre class="brush: js; " data-trim>
+                var car = new Car('Ford', 'Escort');
+                car.toString();
+                car.drive();
+                car.honk();
+                try {
+                    car.tow('stuff');
+                } catch (err) {
+                    console.warn(err.message);
+                }
+                
+                var truck = new Truck('Chevy', 'Silverado');
+                
+                truck.toString();
+                truck.drive();
+                truck.honk();
+                truck.tow('heavy things');
+            </pre>
+        </span>
+        <span class="fragment">
+            <img src="img/console-output.png">
+        </span>
+    </section>
+    <section>
         <span style="font-size:  1.25rem;">
         <pre class="brush: js; " data-trim>
             /*
-             * Snippet 2. Understanding Extend
+             * Understanding Extend
              */
             var car = {
                 type: 'car',
@@ -400,7 +454,7 @@
         <span style="font-size:  1.25rem;">
         <pre class="brush: js; ">
             /*
-             * Snippet 2 Output.
+             * Output.
              */
 
             Input into Firebug:
@@ -454,7 +508,7 @@
             /*
              * end
              */
-        </pre>
+        </pre>`
         <a href="http://backbonejs.org/#Model" target="_blank">Backbone.js Model API</a>
         </span>
     </section>
@@ -578,10 +632,18 @@
     </section>
     <section>
         <h3>Test our results</h3>
+        <p>Launch you node.js server and test the models</p>
         <p>
-            Can view the restaurants with try_it.html
+            View the restaurants with try_it.html
         </p>
         <a href="http://localhost:9000/try_it.html" target="_blank">http://localhost:9000/try_it.html</a>
+
+        <blockquote>
+            <p>Link to solution source: </p>
+            <a href="https://github.com/NVISIA/BackboneWorkshop/blob/bw-ex1-sol/webapp/js/restaurant.js"
+               target="_blank">restaurant.js</a>
+        </blockquote>
+        <p style="color: lawngreen">@TODO Need to get TinyURL for solution</p>
 
     </section>
     <section>
@@ -606,9 +668,10 @@
 
 <section>
     <section>
-        <h2>Creating the View</h2>
+        <h3>Creating the View</h3>
         <ul>
             <li>Introducing Handlebars!</li>
+            <li>Changing what is displayed with helpers.</li>
             <li>A Basic View.</li>
             <li>A List View.</li>
         </ul>
@@ -647,6 +710,9 @@
         <h3>Handlebars Helper functions</h3>
             <span style="font-size:  1.25rem;">
             <pre class="brush: js; ">
+                /**
+                  * Helpers located in BackboneWorkshop/webapp/js/handlebars-helpers.js
+                  **/
                 Handlebars.registerHelper('showPrice', function(price) {
                     var index, out = "";
                     for (index = 1; index <= price; index++) {
@@ -695,6 +761,12 @@
     </section>
     <section>
         <h3>Basic Backbone View</h3>
+        <aside class="notes">
+            <p>
+                Templates are pre-compiled using a node.js plug-in.
+            </p>
+            <p>The templates are then attached to the Handlebars module on the templates object.</p>
+        </aside>
         <span style="font-size:  1.25rem;">
         <pre class="brush: js; ">
             /*
@@ -748,94 +820,124 @@
         </pre>
         </span>
     </section>
+    <section>
+        <aside class="notes">
+            <p style="margin-bottom: 20px;">
+                Let's do a simple main to display our restaurants in the mock up that the web designer provided. This would
+                give us something we could show our boss or bring to 'demo day' if we are doing Agile/Scrum.
+            </p>
 
-</section>
+            <ul>Options:
+                <li>Simple Main</li>
+                <li>Basic Router</li>
+                <li>Delegate to modules.</li>
+                <li>Etc...</li>
+            </ul>
+        </aside>
 
-
-
-<section>
-    <p style="margin-bottom: 20px;">
-        Time to add a main controller. This can be done a few different ways.
-    <ul>
-        <li>Simple Main</li>
-        <li>Basic Router</li>
-        <li>Delegate to modules.</li>
-        <li>Routed Tabs</li>
-        <li>Etc...</li>
-    </ul>
-    </p>
-    <p style="margin-bottom: 20px;">
-        Let's do a simple main to display our restaurants in the mock up that the web designer provided. This would
-        give us something we could show our boss or bring to 'demo day' if we are doing Agile/Scrum.
-    </p>
-
-</section>
-
-<section>
+        <h3>Connecting it all together</h3>
         <span style="font-size:  1.25rem;">
         <pre class="brush: js; ">
+            /*
+             *  A Simple Main     (application.js)
+             */
+            var allRestaurantView = new RestaurantModule.RestaurantListView();
 
-    /*
-     *  A Simple Main     (application.js)
-     */
-    var allRestaurantView = new RestaurantModule.RestaurantListView();
+            var allRestaurantContent = $("#restaurant-list-main");
 
-    var allRestaurantContent = $("#restaurant-list-main");
+            allRestaurantContent.empty();
+            allRestaurantContent.append(allRestaurantView.render().el);
 
-    allRestaurantContent.empty();
-    allRestaurantContent.append(allRestaurantView.render().el);
-
-    /*
-     * end
-     */
-
+            /*
+             * end
+             */
         </pre>
         </span>
+    </section>
+</section>
+<section>
+    <section>
+        <h3>Exercise #2</h3>
+        <ol >
+            <li>Create the simple Restaurant View</li>
+            <li>Add code for the Restaurant List View</li>
+            <li>Review the 'Simple Main' used to enable application</li>
+            <li>Launch the Application</li>
+        </ol>
+    </section>
+    <section>
+        <blockquote>
+            <p>Link to source: </p>
+            <a href="https://github.com/NVISIA/BackboneWorkshop/blob/bw-ex2-sol/webapp/js/restaurant.js"
+               target="_blank">restaurant.js</a>
+        </blockquote>
+        <blockquote>
+            <p>Link to source: </p>
+            <a href="https://github.com/NVISIA/BackboneWorkshop/blob/bw-ex2-sol/webapp/js/application.js"
+               target="_blank">application.js</a>
+        </blockquote>
+        <p style="color: lawngreen">@TODO Need to get TinyURL for solution</p>
+    </section>
+    <section>
+        <h3>Test our results</h3>
+        <p>
+            Launch the start of the application with index.html
+        </p>
+        <p>
+            Application should show Restaurants but nothing is selectable.
+        </p>
+        <p>
+            <a href="http://localhost:9000/index.html" target="_blank">http://localhost:9000/index.html</a>
+        </p>
+    </section>
+
+    <section>
+        <aside class="notes">
+            <p>Make sure that when showing the git checkout, that they know it will wipe out their code.</p>
+        </aside>
+        <h3>
+            Questions?
+        </h3>
+        <p></p>
+        <p>
+            <div class="fragment">
+                <p >To Reset, perform a git checkout</p>
+                <pre><code class="script">
+                    Prompt:&gt; git checkout tags/EXERCISE2;
+                    or
+                    Prompt:&gt; git checkout -f tags/EXERCISE2;
+                </code></pre>
+            </div>
+        </p>
+    </section>
+
 </section>
 
 <section>
-    <p style="margin-bottom: 20px;">
-    <ul>
-        <li>index.html should now be working and showing the Restaurants from the server.</li>
-    </ul>
-    </p>
-    <p style="margin-bottom: 20px;">
-        Questions?
-    </p>
-    <p>
-        @TODO Information on github TAG, etc.
-    </p>
-    <p>
-    <ul>
-        <li>What's Next?</li>
-        <li>We need to add code to select a restaurant and show available times.</li>
-    </ul>
-    </p>
-    <ol>
-        <li>Routers for selecting a restaurant.</li>
-        <li>A little JQuery to control the main view.</li>
-        <li>
-            Modifications to modules and views.
-            <ol>
-                <li>Get reservations from the server.</li>
-                <li>Add a time slot View.</li>
-                <li>Modify restaurant View to show times.</li>
-            </ol>
-        </li>
-        <li>Looping: Template VS Views</li>
-    </ol>
-</section>
-
-<section>
-<!-- ************************************************************* -->
-<div id="code-14" class="step" data-x="2000" data-y="4000" >
-
+    <section>
+        <h3>Adding Events and Routing</h3>
+        <p>
+        <ol>
+            <li>Routers for selecting a restaurant.</li>
+            <li>A little JQuery to control the main view.</li>
+            <li>
+                Modifications to modules and views.
+                <ul>
+                    <li>Get reservations from the server.</li>
+                    <li>Add a time slot View.</li>
+                    <li>Modify restaurant View to show times.</li>
+                </ul>
+            </li>
+            <li>Looping: Template VS Views</li>
+        </ol>
+        </p>
+    </section>
+<!--Create the Router-->
+    <section>
+        <h3>Create the Router</h3>
         <span style="font-size:  1rem;">
-        <a class="jump" href="#hb-template-1">Back to the template.</a>
         <pre class="brush: js; ">
-    /*
-     * Create our router. (application.js)
-     */
+    /* Create our router. (application.js) */
     $(document).ready(function(){
         var allRestaurantView = new RestaurantModule.RestaurantListView();
 
@@ -869,32 +971,28 @@
             Backbone.history.start();
         });
     });
-    /*
-     * end
-     */
+    /* end */
         </pre>
-
-
-
+        <p>
+            <a href="http://backbonejs.org/#Router" target="_blank">Backbone.js Router API</a>
+        </p>
         </span>
-</div>
-<!-- ************************************************************* -->
-</section>
 
-<section>
-<!-- ************************************************************* -->
-<div id="code-15" class="step" data-x="3000" data-y="4000" >
-        <span style="font-size:  1.25rem;">
-        <pre class="brush: js; highlight: [13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]">
+    </section>
+    <!--Fetch Restaurants-->
+    <section>
+        <aside class="notes">
+            <p>Walk the class through what each highlighted line is doing.</p>
+        </aside>
+        <h3>Adding non-standard AJAX request</h3>
+        <span style="font-size:  1.0rem;">
+        <pre class="brush: js; highlight: [9,10,11,12,13,14,15,16,17,18,19]">
     /*
      *  Update Restaurant to fetch its reservations.  (restaurant.js)
      */
    RestaurantModule.Restaurant = Backbone.Model.extend({
         defaults: {
-            name: "undefined",
-            location: "",
-            reservations: [],
-            availableTimes: []
+            name: "not available"
         },
         urlRoot: "/restaurants",
         fetchReservations: function () {
@@ -919,41 +1017,34 @@
 
         </pre>
         </span>
-</div>
-<!-- ************************************************************* -->
-</section>
-
-<section>
-<!-- ************************************************************* -->
-<div id="code-16" class="step" data-x="4000" data-y="4000" >
+    </section>
+    <!--Add the Time Slot View (Available Times) -->
+    <section>
+        <h3>Defining the TimeSlotView</h3>
         <span style="font-size:  1.25rem;">
-        <pre class="brush: js; ">
-    /*
-     *  Add a TimeSlotView to show the times. (restaurant.js)
-     */
-    RestaurantModule.TimeSlotView = Backbone.View.extend({
-        initialize:function(options){
-            this.template = Handlebars.templates.availableTimes;
-        },
-        render:function(){
-            this.$el.html(this.template(this.model.toJSON()));
-            return this;
-        }
-    });
+            <pre class="brush: js; ">
+                /*
+                 *  Add a TimeSlotView to show the times. (restaurant.js)
+                 */
+                RestaurantModule.TimeSlotView = Backbone.View.extend({
+                    initialize:function(options){
+                        this.template = Handlebars.templates.availableTimes;
+                    },
+                    render:function(){
+                        this.$el.html(this.template(this.model.toJSON()));
+                        return this;
+                    }
+                });
 
-    /*
-     * end
-     */
-
-        </pre>
+                /*
+                 * end
+                 */
+            </pre>
         </span>
-</div>
-<!-- ************************************************************* -->
-</section>
-
-<section>
-<!-- ************************************************************* -->
-<div id="code-17" class="step" data-x="5000" data-y="4000" >
+    </section>
+    <!--Set the times on the View from Results-->
+    <section>
+        <h3>Add the Available Times</h3>
         <span style="font-size:  1.25rem;">
         <pre class="brush: js; highlight:[5,6,7,14,15,16,19,20,21,22,23]">
     /*
@@ -984,12 +1075,13 @@
     /*
      * end
      */
-
         </pre>
         </span>
-</div>
-<!-- ************************************************************* -->
+    </section>
 </section>
+
+
+
 
 <section>
 <!-- ************************************************************* -->
@@ -1852,13 +1944,13 @@
 </section>
 
 <!-- ************************************************************* -->
-<section><h2>Code steps here</h2></section>
-<section><h2>Taking it Further</h2>
+<section><h3>Code steps here</h3></section>
+<section><h3>Taking it Further</h3>
 
 </section>
-<section><h2>Contact Us (from Mark)</h2></section>
+<section><h3>Contact Us (from Mark)</h3></section>
 <!--More Info-->
-<section><h2>More Information</h2>
+<section><h3>More Information</h3>
 
     <p><a href="http://backbonejs.org/" target="_blank">Backbone.js - http://backbonejs.org</a></p>
 
