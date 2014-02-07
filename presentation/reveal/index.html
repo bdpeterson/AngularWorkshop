@@ -424,7 +424,7 @@
         </div>
     </section>
     <section>
-        <h3>Closures</h3>
+        <h3>Extending a JavaScript 'Class'</h3>
         <span style="font-size:  1.0rem;">
         <pre class="brush: js; " data-trim>
             var Car = function(make, model) {
@@ -459,7 +459,7 @@
             </span>
     </section>
     <section>
-        <h3>Closure Method usage and Results</h3>
+        <h3>Extend example usage and Results</h3>
         <span style="font-size:  1.0rem;">
             <pre class="brush: js; " data-trim>
                 var car = new Car('Ford', 'Escort');
@@ -483,64 +483,6 @@
         <span class="fragment">
             <img src="img/console-output.png">
         </span>
-    </section>
-    <section>
-        <span style="font-size:  1.25rem;">
-        <pre class="brush: js; " data-trim>
-            /*
-             * Understanding Extend
-             */
-            var car = {
-                type: 'car',
-                name: "betsy",
-                start: function() {
-                  console.log("starting up " + this.type + " " + this.name);
-                }
-            };
-
-            car.start();
-
-            var truck = {
-                type: 'truck',
-                name: 'mark',
-                honk: function() {
-                  console.log("honking horn of " + this.type + " " + this.name);
-                }
-            };
-            truck.honk();
-
-            var suv = _.extend(car, truck);
-            suv.name = 'george';
-            suv.type = 'suv';
-            suv.start();
-            suv.honk();
-            /*
-             * end
-             */
-        </pre>
-        </span>
-    </section>
-    <section>
-        <span style="font-size:  1.25rem;">
-        <pre class="brush: js; ">
-            /*
-             * Output.
-             */
-
-            Input into Firebug:
-            >>> var car = {     type: 'car',  	name: "betsy",   ...  suv.type = 'suv';  suv.start();  suv.honk();
-
-            starting up car betsy
-            honking horn of truck mark
-            starting up suv george
-            honking horn of suv george
-
-            /*
-             * end
-             */
-        </pre>
-        </span>
-
     </section>
 </section>
 <!--Sample of final application-->
