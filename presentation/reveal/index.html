@@ -144,12 +144,18 @@
         </ul>
 
     </section>
-</section>
-<section><h3>Traffic Flow diagram</h3>
-    <ul>
-        <li>HTTP GET</li>
-        <li>JS Response</li>
-    </ul>
+    <section>
+        <h3>Traditional Web Flow</h3>
+
+        <div>
+            <img style="background-color: #EEE8D5;" src="img/TraditionalWebFlow.png" alt="SPA Trend" width="55%"/>
+        </div>
+    </section>
+    <section><h3>SPA Web Flow</h3>
+        <div>
+            <img style="background-color: #EEE8D5;" src="img/SPAWebFlow.png" alt="SPA Trend" width="55%"/>
+        </div>
+    </section>
 </section>
 
 <!--Examples of SPA-->
@@ -188,10 +194,9 @@
         <div style="display: inline-block;vertical-align: top;">
             <ul>
                 <li>Backbone.js</li>
-                <li>Knockout</li>
-                <li>CanJS</li>
-                <li>AngularJS</li>
+                <li>Angular.js</li>
                 <li>Ember</li>
+                <li>Knockout</li>
                 <li>Others...</li>
             </ul>
 
@@ -202,7 +207,72 @@
     </div>
 
 </section>
-<section><h3>Slides for Backbone, Ember, Angular</h3></section>
+<section>
+    <section>
+        <h3>Backbone.js</h3>
+        <img src="img/Backbone.png" alt="" height="75px"/>
+        <div style="font-size: 0.8em">
+            <ul>
+                <li>Mature, with codebase leveling out. (less commits)</li>
+                <li>Has dependencies on Underscore and JQuery.</li>
+                <li>A smaller library providing structure to architect with.</li>
+                <li>Add Marionette to go from library to framework.</li>
+                <li>Can be “Injected” and used with other libraries or frameworks.</li>
+                <li>Uses Underscore’s template method, but Handlebars or Mustache commonly used.</li>
+                <li>Used in apps like FourSquare, GroupOn, USAToday and many more.</li>
+            </ul>
+
+        </div>
+    </section>
+    <section>
+        <h3>AngularJs</h3>
+        <img src="img/Angular.png" alt="" height="75px"/>
+        <div style="font-size: 0.8em">
+            <ul>
+                <li>Established, Largest Growth, Google Approved!</li>
+                <li>No dependencies.</li>
+                <li>Inspired by Flex and Silverlight, so it’s declarative and has no ‘main’.</li>
+                <li>A declarative framework, where you annotate HTML 5 with declarations.</li>
+                <li>Doesn't require ‘full commitment‘.</li>
+                <li>The dependency injection allows you to declaratively describe how your application is wired.</li>
+                <li>Used for the PS3 Youtube app, whichairline.com, dailybreak, and many others.</li>
+            </ul>
+
+        </div>
+    </section>
+    <section>
+        <h3>Ember</h3>
+        <img src="img/Ember.png" alt="" height="75px"/>
+        <div style="font-size: 0.8em">
+            <ul>
+                <li> The largest framework, twice the size of Angular.</li>
+                <li>The evolution of the Cocoa inspired SproutCore’s move towards JQuery.</li>
+                <li>Has dependencies on JQuery and Handlebars.</li>
+                <li>Intended to control the whole page, so only suitable to be used alone.</li>
+                <li>Depends on scaffolding and convention.</li>
+                <li>Uses Handlebars for templates.</li>
+                <li>Used by Zendesk, Square, LivingSocial and many more.</li>
+            </ul>
+
+        </div>
+    </section>
+    <section>
+        <h3>Knockout</h3>
+        <img src="img/Knockout.png" alt="" height="75px"/>
+        <div style="font-size: 0.8em">
+            <ul>
+                <li>Developed by Steve Sanderson, currently working for Microsoft.</li>
+                <li>Considered a MVVM library.</li>
+                <li>Declarative syntax similar to Angular.</li>
+                <li>Declarative DOM based templates, but can also do string based.</li>
+                <li>Small codebase.</li>
+                <li>Gives importance to compatibility with older browsers.</li>
+                <li>Used for amctheatres.com, pillsbury.com, jsFiddle and many others.</li>
+            </ul>
+
+        </div>
+    </section>
+</section>
 <!--Tool overview-->
 <section><h3>Workshop tool overview</h3>
 
@@ -474,7 +544,9 @@
     </section>
 </section>
 <!--Sample of final application-->
-<section><h1>APPLICATION DEMO :)</h1></section>
+<section><h3>Application Demo</h3>
+    <a href="http://localhost:9000/index.html" target="_blank">SPA Application</a>
+</section>
 <section>
     <!-- Getting Started -->
     <section>
@@ -1020,7 +1092,7 @@
     </section>
     <!--Add the Time Slot View (Available Times) -->
     <section>
-        <h3>Defining the TimeSlotView</h3>
+        <h3>Defining the Time Slot View</h3>
         <span style="font-size:  1.25rem;">
             <pre class="brush: js; ">
                 /*
@@ -1078,110 +1150,97 @@
         </pre>
         </span>
     </section>
-</section>
+    <section>
+        <h3>Add event handling</h3>
+        <span style="font-size:  0.9rem;">
+            <pre class="brush: js; highlight:[12,21,22,23,31,32,33,34]">
+                /* Update the RestaurantView to add an event!    (restaurant.js) */
+                  RestaurantModule.RestaurantView = Backbone.View.extend({
+                    defaults: {
+                        formView: undefined,
+                        selected:false
+                    },
+                    events: {
+                        'click .availableTime': 'selectTime'
+                    },
+                    initialize: function () {
+                        this.template = Handlebars.templates.restaurant;
+                        this.listenTo(this.model, 'fetchComplete', this.render);
+                    },
+                    render: function () {
+                        if (this.formView) {
+                            this.$el.find('.reservationForm').detach();
+                            this.formView=undefined;
+                        }
 
-
-
-
-<section>
-<!-- ************************************************************* -->
-<div id="code-18" class="step" data-x="6000" data-y="4000" >
-        <span style="font-size:  1.0rem;">
-        <pre class="brush: js; highlight:[9,10,11,33,34,35,36]">
-    /*
-     *  Update the RestaurantView to add an event!    (restaurant.js)
-     */
-      RestaurantModule.RestaurantView = Backbone.View.extend({
-        defaults: {
-            formView: undefined,
-            selected:false
-        },
-        events: {
-            'click .availableTime': 'selectTime'
-        },
-        initialize: function () {
-            this.template = Handlebars.templates.restaurant;
-            this.listenTo(this.model, 'fetchComplete', this.render);
-        },
-        render: function () {
-            if (this.formView) {
-                this.$el.find('.reservationForm').detach();
-                this.formView=undefined;
-            }
-
-            this.$el.html(this.template(this.model.toJSON()));
-            if (this.selected){
-                this.$el.find(".availableTimes").html(this.availableTimes.render().el);
-            }
-            return this;
-        },
-        showTimes: function(){
-            this.selected=true;
-            this.availableTimes = new RestaurantModule.TimeSlotView({model:this.model});
-            this.model.fetchReservations();
-        },
-        selectTime: function (event) {
-            var reservationTime = parseInt(event.currentTarget.getAttribute('value'));
-            console.log("selected time: " + reservationTime);
-        }
-    });
-
-    /*
-     * end
-     */
-
-        </pre>
+                        this.$el.html(this.template(this.model.toJSON()));
+                        if (this.selected){
+                            this.$el.find(".availableTimes").html(this.availableTimes.render().el);
+                        }
+                        return this;
+                    },
+                    showTimes: function(){
+                        this.selected=true;
+                        this.availableTimes = new RestaurantModule.TimeSlotView({model:this.model});
+                        this.model.fetchReservations();
+                    },
+                    selectTime: function (event) {
+                        var reservationTime = parseInt(event.currentTarget.getAttribute('value'));
+                        console.log("selected time: " + reservationTime);
+                    }
+                });
+                /* end */
+            </pre>
         </span>
-</div>
-<!-- ************************************************************* -->
-</section>
+    </section>
 
-<section>
-<!-- ************************************************************* -->
-<div id="code-19" class="step" data-x="7000" data-y="4000" >
-        <span style="font-size:  1.0rem;">
-        <pre class="brush: js; highlight:[10,11,12,13,26,27,28]">
-    /*
-     *  Update the RestaurantListView to notify listeners when it is done loading.  (restaurant.js)
-     */
-      RestaurantModule.RestaurantListView = Backbone.View.extend({
-        initialize: function () {
-            this.template = Handlebars.templates.restaurantListView;
-            this.restaurants = new RestaurantModule.RestaurantList();
-            this.listenTo(this.restaurants, "add", this.addRestaurantView);
+    <section>
+        <h3>Events when Restaurants Loaded</h3>
+        <span style="font-size:  0.9rem;">
+            <pre class="brush: js; highlight:[10,11,12,13,26,27,28]">
+                /*
+                 *  Update the RestaurantListView to notify listeners when it is done loading.  (restaurant.js)
+                 */
+                  RestaurantModule.RestaurantListView = Backbone.View.extend({
+                    initialize: function () {
+                        this.template = Handlebars.templates.restaurantListView;
+                        this.restaurants = new RestaurantModule.RestaurantList();
+                        this.listenTo(this.restaurants, "add", this.addRestaurantView);
 
-            _.bindAll(this, "fireReadyEvent");
-            this.restaurants.fetch({
-                success: this.fireReadyEvent
-            });
-        },
-        render: function () {
-            this.$el.html(this.template(this));
-            return this;
-        },
-        addRestaurantView: function (restaurant) {
-            var view = new RestaurantModule.RestaurantView({model: restaurant});
-            this.$('.restaurantList').append(view.render().el);
-        },
-        count: function () {
-            return this.restaurants.length;
-        },
-        fireReadyEvent: function () {
-            this.trigger('ready');
-        },
-        getRestaurantById:function(id){
-            return this.restaurants.get(id);
-        }
-    });
-    /*
-     * end
-     */
-
-        </pre>
+                        _.bindAll(this, "fireReadyEvent");
+                        this.restaurants.fetch({
+                            success: this.fireReadyEvent
+                        });
+                    },
+                    render: function () {
+                        this.$el.html(this.template(this));
+                        return this;
+                    },
+                    addRestaurantView: function (restaurant) {
+                        var view = new RestaurantModule.RestaurantView({model: restaurant});
+                        this.$('.restaurantList').append(view.render().el);
+                    },
+                    count: function () {
+                        return this.restaurants.length;
+                    },
+                    fireReadyEvent: function () {
+                        this.trigger('ready');
+                    },
+                    getRestaurantById:function(id){
+                        return this.restaurants.get(id);
+                    }
+                });
+                /* end */
+            </pre>
         </span>
-</div>
-<!-- ************************************************************* -->
+        <!-- ************************************************************* -->
+    </section>
+
 </section>
+
+
+
+
 
 <section>
 <!-- ************************************************************* -->
@@ -1944,9 +2003,13 @@
 </section>
 
 <!-- ************************************************************* -->
-<section><h3>Code steps here</h3></section>
 <section><h3>Taking it Further</h3>
-
+<ul>
+    <li>Marionette</li>
+    <li>Security</li>
+    <li>Unit Testing</li>
+    <li>Binding Frameworks</li>
+</ul>
 </section>
 <section><h3>Contact Us (from Mark)</h3></section>
 <!--More Info-->
