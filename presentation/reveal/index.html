@@ -262,7 +262,7 @@
         <div style="font-size: 0.8em">
             <ul>
                 <li>Developed by Steve Sanderson, currently working for Microsoft.</li>
-                <li>Considered a MVVM library.</li>
+                <li>Considered an MVVM library.</li>
                 <li>Declarative syntax similar to Angular.</li>
                 <li>Declarative DOM based templates, but can also do string based.</li>
                 <li>Small codebase.</li>
@@ -380,13 +380,6 @@
 <section><h3>Britesnow.com</h3>
     <img src="img/html5-architecture-application.png" alt=""/>
 </section>
-<section><h3>Domain Model</h3>
-
-    <div>
-        <img width="60%" src="img/class-model.png"/>
-    </div>
-</section>
-
 <section>
     <!-- Overview Code section-->
     <section>
@@ -486,19 +479,60 @@
     </section>
 </section>
 <!--Sample of final application-->
-<section><h3>Application Demo</h3>
-    <a href="http://localhost:9000/index.html" target="_blank">SPA Application</a>
+<section>
+    <section><h3>Application Demo</h3>
+        <a href="http://localhost:9000/index.html" target="_blank">SPA Application</a>
+    </section>
+    <section>
+        <h3>Directory Structure</h3>
+        <span style="font-size:  0.8em; line-height: normal">
+        <ul style="list-style-type: disc">
+            <li>reset.bat</li>
+            <li>reset.sh</li>
+            <li>run.bat</li>
+            <li>run.sh</li>
+            <li>webapp</li>
+            <ul style="list-style-type: inherit">
+                <li>css</li>
+                <li>img</li>
+                <li>js</li>
+                <ul style="list-style-type: inherit">
+                    <li>application.js</li>
+                    <li>handlebars-helpers.js</li>
+                    <li>reservations.js</li>
+                    <li>restaurant.js</li>
+                    <li>precompiled-templates.js</li>
+                </ul>
+            <li>libs</li>
+            <li>template</li>
+            <li>test</li>
+            <li>index.html</li>
+            <li>test.html</li>
+            </ul>
+        </ul>
+        </span>
+    </section>
 </section>
+
+
 <section>
     <!-- Getting Started -->
     <section>
         <h3>Getting Started</h3>
         <ul>
+            <li>Our Domain Model</li>
             <li>The basic Model.</li>
             <li>The basic Collection.</li>
             <li>A quick wiring to REST.</li>
         </ul>
     </section>
+
+    <section><h3>Domain Model</h3>
+        <div>
+            <img width="60%" src="img/class-model.png"/>
+        </div>
+    </section>
+
 
     <!--Basic Model-->
     <section>
@@ -614,7 +648,7 @@
         <span style="font-size:  1.25rem;">
         <pre class="brush: js; ">
             /**
-             * Restaurant Module
+             * Restaurant Module (restaurant.js)
              **/
 
             (function () {
@@ -1034,6 +1068,9 @@
     </section>
     <!--Add the Time Slot View (Available Times) -->
     <section>
+        <aside class="notes">
+            <p>The Time Slot View is used to show the available times from the Reservations.</p>
+        </aside>
         <h3>Defining the Time Slot View</h3>
         <span style="font-size:  1.25rem;">
             <pre class="brush: js; ">
@@ -1177,50 +1214,122 @@
         </span>
         <!-- ************************************************************* -->
     </section>
-
-</section>
-
-
-
-
-
-<section>
-<!-- ************************************************************* -->
-<div id="hb-template-2" class="step" data-x="8000" data-y="4000" >
+    <section>
         <span style="font-size:  1.25rem;">
-        <pre class="brush: js; ">
-    <!--
-      -- Available Times template (availableTimes.handlebars)
-      -->
+            <pre class="brush: js; ">
+                <!--
+                  -- Available Times template (availableTimes.handlebars)
+                  -->
 
-     <form>
-         <fieldset>
-             <legend>Available Times</legend>
+                 <form>
+                     <fieldset>
+                         <legend>Available Times</legend>
 
-             <div class="row">
-                 {{#each availableTimes}}
-                 <div class="large-3 medium-4 small-6 columns availableTime" value="{{this}}">
-                     {{showTime this}}
-                 </div>
-                 {{/each}}
-             </div>
-         </fieldset>
-     </form>
+                         <div class="row">
+                             {{#each availableTimes}}
+                             <div class="large-3 medium-4 small-6 columns availableTime" value="{{this}}">
+                                 {{showTime this}}
+                             </div>
+                             {{/each}}
+                         </div>
+                     </fieldset>
+                 </form>
 
-     <!--
-      -- end
-      -->
-        </pre>
+                 <!--
+                  -- end
+                  -->
+            </pre>
         </span>
-</div>
-<!-- ************************************************************* -->
+    </section>
+    </section>
+<section>
+    <section>
+        <h3>Exercise #3</h3>
+        <ol >
+            <li>Add Router to control the Application</li>
+            <li>Add AJAX request for Reservations</li>
+            <li>Add Events for selection</li>
+            <li>Launch the Application</li>
+        </ol>
+    </section>
+
+    <section>
+        <aside class="notes">
+            <p>The entire Application start-up is changed in the step. The Router doesn't get started until the Restaurant List has been loaded.
+            </p>
+        </aside>
+        <blockquote>
+            <p>Link to source: (Router changes)</p>
+            <a href="https://github.com/NVISIA/BackboneWorkshop/blob/bw-ex3-sol/webapp/js/application.js"
+               target="_blank">application.js</a>
+        </blockquote>
+
+        <blockquote>
+            <p>Link to source: (Available Times and Time Selection)</p>
+            <a href="https://github.com/NVISIA/BackboneWorkshop/blob/bw-ex3-sol/webapp/js/restaurant.js"
+               target="_blank">restaurant.js</a>
+        </blockquote>
+    </section>
+    <section>
+        <h3>Test our results</h3>
+        <p>
+            Launch the start of the application with index.html
+        </p>
+        <p>
+            Application should show Restaurants and a Restaurant should be selectable.
+        </p>
+        <p>Selecting a Restaurant should show only the Restaurant with it's Available times.</p>
+        <p>
+            <a href="http://localhost:9000/index.html" target="_blank">http://localhost:9000/index.html</a>
+        </p>
+    </section>
+
+    <section>
+        <aside class="notes">
+            <p>Make sure that when showing the git checkout, that they know it will wipe out their code.</p>
+        </aside>
+        <h3>
+            Questions?
+        </h3>
+        <p></p>
+        <p>
+        <div class="fragment">
+            <p >To Reset, perform a git checkout</p>
+                <pre><code class="script">
+                    Prompt:&gt; git checkout tags/EXERCISE3;
+                    or
+                    Prompt:&gt; git checkout -f tags/EXERCISE3;
+                </code></pre>
+        </div>
+        </p>
+    </section>
+
 </section>
 
 <section>
-<div id="compare-1" class="step "  data-x="7500" data-y="4000" data-scale="1.25">
-
-</div>
+    <section>
+        <h3>Making a Reservation</h3>
+        <p>
+        <ol>
+            <li>Reservation Model and View</li>
+            <li>Entering into a Form.</li>
+            <li>A little JQuery to control the main view.</li>
+            <li>
+                Modifications to modules and views.
+                <ul>
+                    <li>Get reservations from the server.</li>
+                    <li>Add a time slot View.</li>
+                    <li>Modify restaurant View to show times.</li>
+                </ul>
+            </li>
+            <li>Looping: Template VS Views</li>
+        </ol>
+        </p>
+    </section>
 </section>
+
+
+
 
 <section>
 <!-- ************************************************************* -->
